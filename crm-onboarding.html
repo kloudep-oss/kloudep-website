@@ -1,8 +1,388 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CRM Onboarding, Automation & Implementation Support | KLOUDEP</title><meta name="description" content="KLOUDEP supports CRM onboarding, configuration, data migration, pipelines, workflow automation, training and administration."><meta name="robots" content="index, follow"><link rel="canonical" href="https://kloudep.co.za/crm-onboarding.html"><link rel="icon" href="images/logo.png"><style>
-:root{--bg:#05070c;--card:#0f1624;--line:#263043;--cyan:#00f2fe;--pink:#ff007f;--text:#f8fafc;--muted:#9aa8bd}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#05070c;color:var(--text);line-height:1.6}a{color:inherit}.container{width:min(1160px,calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;background:#080c14f2;border-bottom:1px solid var(--line);z-index:10}.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}.logo img{width:48px;height:48px;object-fit:contain}.logo small{display:block;color:var(--cyan);font-size:10px}.links{display:flex;align-items:center;gap:20px}.links a{text-decoration:none}.menu{display:none;background:none;border:0;color:white;font-size:24px}
-.btn{display:inline-block;padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:700}.primary{background:linear-gradient(135deg,var(--cyan),var(--pink));border:0}.hero{padding:90px 0}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:45px;align-items:center}.eyebrow{color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:12px}h1{font-size:clamp(42px,7vw,72px);line-height:1.03;margin:12px 0 22px}h2{font-size:clamp(30px,4vw,46px);line-height:1.1}.gradient{color:var(--cyan)}.lead,p{color:var(--muted)}.lead{font-size:18px}.actions{display:flex;gap:10px;flex-wrap:wrap}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}.quick{display:grid;gap:10px}.quick a{padding:12px;border:1px solid var(--line);border-radius:9px;text-decoration:none}.trust{border-block:1px solid var(--line)}.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.trust-grid div{padding:20px 8px}section{padding:70px 0}.head{max-width:760px;margin-bottom:30px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.tags{color:var(--cyan);font-size:13px;margin:14px 0}.link{color:var(--cyan);font-weight:700;text-decoration:none}.contact{text-align:center;padding:45px 24px}footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-size:14px}
-@media(max-width:820px){.menu{display:block}.links{display:none;position:absolute;top:78px;left:0;right:0;background:#080c14;padding:20px;flex-direction:column;align-items:stretch}.links.open{display:flex}.hero-grid,.grid2,.grid3{grid-template-columns:1fr}.trust-grid{grid-template-columns:1fr 1fr}}
-</style></head><body><header><div class="container nav"><a class="logo" href="index.html"><img src="images/logo.png" alt="KLOUDEP logo"><span>KLOUDEP<small>BUSINESS • TECHNOLOGY • ICT</small></span></a><button class="menu" id="m">☰</button><nav class="links" id="n"><a href="index.html#about">About</a><a href="index.html#solutions">Solutions</a><a href="software-development.html">Software</a><a href="crm-onboarding.html">CRM</a><a href="index.html#locations">Locations</a><a href="index.html#contact">Contact</a><a class="btn primary" href="quotation.html">Get a Quote</a></nav></div></header><main><section class="hero"><div class="container"><div class="eyebrow">CRM & Business Automation</div><h1>Turn customer information into a working business system.</h1><p class="lead">KLOUDEP helps organisations structure customer data, sales processes and service workflows through practical CRM onboarding and automation.</p><a class="btn primary" href="quotation.html?service=crm">Request CRM Onboarding</a></div></section><section><div class="container"><div class="grid3"><div class="card"><h3>CRM Requirements & Selection</h3><p>Map customer, sales and service requirements and assess suitable CRM options.</p></div><div class="card"><h3>Setup & Configuration</h3><p>Configure fields, stages, pipelines, user roles, permissions, forms and workflows.</p></div><div class="card"><h3>Data Migration</h3><p>Prepare, clean and import compatible customer, company, lead and opportunity data.</p></div><div class="card"><h3>Automation</h3><p>Configure compatible notifications, tasks, lead routing, follow-ups and workflows.</p></div><div class="card"><h3>Dashboards & Reporting</h3><p>Build useful views and reports for pipeline activity and management oversight.</p></div><div class="card"><h3>User Onboarding & Support</h3><p>Document procedures, onboard users and provide ongoing administration where agreed.</p></div></div></div></section><section><div class="container"><div class="card contact"><h2>Ready to discuss your project?</h2><a class="btn primary" href="quotation.html?service=crm">Request CRM Onboarding</a></div></div></section></main><footer><div class="container"><strong>KLOUDEP (Pty) Ltd</strong> • Reg: 2021/387994/07 • +27 65 905 1136 • info@kloudep.co.za • © 2026</div></footer><script>m.onclick=()=>n.classList.toggle('open');document.querySelectorAll('#n a').forEach(a=>a.onclick=()=>n.classList.remove('open'))</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- =========================================================
+       BASIC DOCUMENT SETTINGS
+  ========================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =========================================================
+       SEO
+  ========================================================== -->
+  <title>
+    Software Development &amp; Business Applications | KLOUDEP South Africa
+  </title>
+
+  <meta
+    name="description"
+    content="KLOUDEP provides custom software, web applications, databases, integrations, workflow automation and legacy system support."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <link
+    rel="canonical"
+    href="https://kloudep.co.za/software-development.html"
+  >
+
+  <!-- =========================================================
+       BRANDING & STYLES
+  ========================================================== -->
+  <link rel="icon" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+  <!-- =========================================================
+       SITE HEADER
+  ========================================================== -->
+  <header>
+
+    <div class="container nav">
+
+      <!-- Brand -->
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="KLOUDEP home"
+      >
+        <img
+          src="images/logo.png"
+          alt="KLOUDEP logo"
+        >
+
+        <span>
+          KLOUDEP
+          <small>BUSINESS • TECHNOLOGY • ICT</small>
+        </span>
+      </a>
+
+
+      <!-- Mobile Menu -->
+      <button
+        class="menu"
+        type="button"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        Menu
+      </button>
+
+
+      <!-- Main Navigation -->
+      <nav
+        class="links"
+        id="main-navigation"
+        aria-label="Main navigation"
+      >
+        <a href="index.html#about">
+          About
+        </a>
+
+        <a href="index.html#solutions">
+          Solutions
+        </a>
+
+        <a
+          href="software-development.html"
+          aria-current="page"
+        >
+          Software
+        </a>
+
+        <a href="crm-onboarding.html">
+          CRM
+        </a>
+
+        <a href="managed-it.html">
+          Managed IT
+        </a>
+
+        <a href="index.html#locations">
+          Locations
+        </a>
+
+        <a href="index.html#contact">
+          Contact
+        </a>
+
+        <a
+          class="btn primary"
+          href="quotation.html"
+        >
+          Get a Quote
+        </a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       MAIN CONTENT
+  ========================================================== -->
+  <main>
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="eyebrow">
+          KLOUDEP Software Development
+        </div>
+
+        <h1>
+          Software That Fits the Way You Work.
+        </h1>
+
+        <p class="lead">
+          We help organisations replace repetitive manual processes,
+          disconnected spreadsheets and ageing systems with practical
+          digital solutions.
+        </p>
+
+        <div class="actions">
+
+          <a
+            class="btn primary"
+            href="quotation.html"
+          >
+            Request a Software Quote
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         SOFTWARE DEVELOPMENT SERVICES
+    ======================================================== -->
+    <section class="section">
+
+      <div class="container grid3">
+
+
+        <!-- Web Applications -->
+        <article class="card">
+
+          <h3>
+            Web Applications &amp; Portals
+          </h3>
+
+          <p>
+            Internal tools, customer portals, dashboards,
+            forms and browser-based operational systems.
+          </p>
+
+        </article>
+
+
+        <!-- Database Solutions -->
+        <article class="card">
+
+          <h3>
+            Database Solutions
+          </h3>
+
+          <p>
+            Database-backed applications, structured data
+            workflows and reporting systems.
+          </p>
+
+        </article>
+
+
+        <!-- Integrations -->
+        <article class="card">
+
+          <h3>
+            Integrations &amp; APIs
+          </h3>
+
+          <p>
+            Connect compatible business applications
+            and reduce duplicate data entry.
+          </p>
+
+        </article>
+
+
+        <!-- Workflow Automation -->
+        <article class="card">
+
+          <h3>
+            Workflow Automation
+          </h3>
+
+          <p>
+            Automate repetitive approvals, notifications,
+            data handling and routine processes.
+          </p>
+
+        </article>
+
+
+        <!-- Legacy Systems -->
+        <article class="card">
+
+          <h3>
+            Legacy System Improvement
+          </h3>
+
+          <p>
+            Assess existing tools, modernise workflows
+            and plan practical migration paths.
+          </p>
+
+        </article>
+
+
+        <!-- Dashboards -->
+        <article class="card">
+
+          <h3>
+            Dashboards &amp; Reporting
+          </h3>
+
+          <p>
+            Turn operational information into accessible
+            dashboards and useful reports.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CALL TO ACTION
+    ======================================================== -->
+    <section class="section alt">
+
+      <div class="container">
+
+        <div class="panel contact">
+
+          <h2>
+            Ready to Discuss Your Requirement?
+          </h2>
+
+          <p class="lead">
+            Tell KLOUDEP what you need and we can scope
+            the next practical step.
+          </p>
+
+          <a
+            class="btn primary"
+            href="quotation.html"
+          >
+            Start an Enquiry
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer>
+
+    <div class="container footer">
+
+
+      <!-- Company -->
+      <div>
+
+        <strong>
+          KLOUDEP (Pty) Ltd
+        </strong>
+
+        <p>
+          Business technology, software, CRM, managed IT,
+          business support and ICT procurement.
+        </p>
+
+        <p>
+          Reg: 2021/387994/07
+        </p>
+
+      </div>
+
+
+      <!-- Services -->
+      <div>
+
+        <strong>
+          Services
+        </strong>
+
+        <a
+          href="software-development.html"
+          aria-current="page"
+        >
+          Software Development
+        </a>
+
+        <a href="crm-onboarding.html">
+          CRM &amp; Automation
+        </a>
+
+        <a href="managed-it.html">
+          Managed IT &amp; Networks
+        </a>
+
+      </div>
+
+
+      <!-- Contact -->
+      <div>
+
+        <strong>
+          Contact
+        </strong>
+
+        <a href="tel:+27659051136">
+          +27 65 905 1136
+        </a>
+
+        <a href="mailto:info@kloudep.co.za">
+          info@kloudep.co.za
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+  <script
+    src="js/main.js"
+    defer
+  ></script>
+
+</body>
+
+</html>
