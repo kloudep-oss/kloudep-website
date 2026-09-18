@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Managed IT, Server, Wi-Fi & Network Support | KLOUDEP South Africa</title>
+
+  <meta name="description" content="KLOUDEP provides managed IT support, server setup, LAN and Wi-Fi configuration, wireless access point deployment, Microsoft 365 onboarding, backups, device setup and network troubleshooting for South African organisations.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kloudep.co.za/managed-it.html">
+
+  <style>
+    :root {
+      --bg: #05070c;
+      --card: #0f1624;
+      --line: #263043;
+      --cyan: #00f2fe;
+      --pink: #ff007f;
+      --text: #f8fafc;
+      --muted: #9aa8bd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #080c14f2;
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .logo img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .logo span {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .logo small {
+      display: block;
+      color: var(--cyan);
+      font-size: 10px;
+      margin-top: 4px;
+      letter-spacing: .5px;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .links a {
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      border: 0;
+      color: white;
+    }
+
+    .menu {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: white;
+      padding: 9px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .hero {
+      padding: 90px 0 75px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.03;
+      margin: 12px 0 22px;
+      max-width: 1000px;
+    }
+
+    .gradient {
+      color: var(--cyan);
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 19px;
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    section {
+      padding: 35px 0 70px;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin: 8px 0 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 800px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .check-list li {
+      color: var(--muted);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .check-list li::before {
+      content: "✓";
+      color: var(--cyan);
+      font-weight: 800;
+      margin-right: 10px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step-number {
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 45px 24px;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin: 8px 0 12px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 35px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .process {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .menu {
+        display: block;
+      }
+
+      .links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: #080c14;
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .links.open {
+        display: flex;
+      }
+
+      .grid,
+      .two-col,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Managed IT, Server, Wi-Fi and Network Support",
+    "provider": {
+      "@type": "Corporation",
+      "name": "KLOUDEP (Pty) Ltd",
+      "url": "https://kloudep.co.za/",
+      "logo": "https://kloudep.co.za/images/logo.png",
+      "telephone": "+27659051136",
+      "email": "info@kloudep.co.za"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "South Africa"
+    },
+    "description": "Managed IT support including server setup, LAN and Wi-Fi configuration, wireless access point deployment, device onboarding, Microsoft 365 setup, backup planning, troubleshooting and network documentation.",
+    "url": "https://kloudep.co.za/managed-it.html"
+  }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="KLOUDEP logo">
+        <span>
+          KLOUDEP
+          <small>BUSINESS • TECHNOLOGY • ICT</small>
+        </span>
+      </a>
+
+      <button class="menu" id="menuButton" aria-label="Open navigation">☰</button>
+
+      <div class="links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="software-development.html">Software</a>
+        <a href="crm-onboarding.html">CRM</a>
+        <a href="managed-it.html">Managed IT</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="btn primary" href="quotation.html">Get a Quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">KLOUDEP MANAGED IT & NETWORK SERVICES</div>
+
+      <h1>
+        Reliable technology for the
+        <span class="gradient">way your organisation works.</span>
+      </h1>
+
+      <p class="lead">
+        KLOUDEP supports organisations with server setup, business networks,
+        Wi-Fi and wireless access points, device onboarding, cloud services,
+        backups, troubleshooting and practical managed IT support.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="quotation.html">Request an IT Support Quote</a>
+        <a class="btn" href="#services">Explore IT Services</a>
+        <a class="btn" href="tel:+27659051136">Call +27 65 905 1136</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">Infrastructure & Support</div>
+        <h2>One IT partner for your everyday technology.</h2>
+        <p>
+          From a new wireless access point to a complete small-business
+          network, KLOUDEP provides practical setup, configuration,
+          troubleshooting and documentation services.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Server Setup & Support</h3>
+          <p>
+            Setup and configuration support for business servers, shared
+            resources, user access, file services and core network services.
+          </p>
+          <span class="tag">SERVERS • USERS • SHARED RESOURCES</span>
+        </div>
+
+        <div class="card">
+          <h3>LAN & Business Networks</h3>
+          <p>
+            Local-area network planning and configuration for offices,
+            workspaces and growing organisations, including routers,
+            switches and connected devices.
+          </p>
+          <span class="tag">LAN • ROUTERS • SWITCHES</span>
+        </div>
+
+        <div class="card">
+          <h3>Wi-Fi & Wireless Access Points</h3>
+          <p>
+            Business Wi-Fi and wireless access point (WAP) setup,
+            configuration and optimisation to improve coverage,
+            connectivity and network usability.
+          </p>
+          <span class="tag">WI-FI • WAP • COVERAGE</span>
+        </div>
+
+        <div class="card">
+          <h3>Device Onboarding</h3>
+          <p>
+            Connect and configure workstations, laptops, printers and
+            compatible business devices for secure access to organisational
+            resources.
+          </p>
+          <span class="tag">PC • LAPTOP • PRINTER • USER SETUP</span>
+        </div>
+
+        <div class="card">
+          <h3>Microsoft 365 & Cloud Setup</h3>
+          <p>
+            Practical onboarding and configuration support for Microsoft 365,
+            email, user accounts, OneDrive, SharePoint and cloud-based
+            collaboration workflows.
+          </p>
+          <span class="tag">MICROSOFT 365 • CLOUD • COLLABORATION</span>
+        </div>
+
+        <div class="card">
+          <h3>Backup Planning & Setup</h3>
+          <p>
+            Help organisations establish practical backup routines for
+            important business files, shared data and supported systems,
+            including recovery planning.
+          </p>
+          <span class="tag">BACKUP • RECOVERY • BUSINESS DATA</span>
+        </div>
+
+        <div class="card">
+          <h3>Network Troubleshooting</h3>
+          <p>
+            Diagnose common connectivity, configuration and device-access
+            problems affecting business networks, Wi-Fi and shared
+            resources.
+          </p>
+          <span class="tag">DIAGNOSIS • CONNECTIVITY • SUPPORT</span>
+        </div>
+
+        <div class="card">
+          <h3>Network Documentation</h3>
+          <p>
+            Produce practical network records, equipment inventories,
+            configuration notes and diagrams to make future maintenance
+            and upgrades easier.
+          </p>
+          <span class="tag">DIAGRAMS • INVENTORY • DOCUMENTATION</span>
+        </div>
+
+        <div class="card">
+          <h3>Managed IT Support</h3>
+          <p>
+            Ongoing technology support for organisations that need a
+            dependable point of contact for setup, troubleshooting,
+            maintenance and technology changes.
+          </p>
+          <span class="tag">SUPPORT • MAINTENANCE • IT OPERATIONS</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">Business Connectivity</div>
+        <h2>Better Wi-Fi starts with more than a router.</h2>
+        <p>
+          Wireless performance depends on coverage, placement, network
+          configuration, interference and the number and type of connected
+          devices. KLOUDEP can help plan and configure a practical business
+          wireless environment.
+        </p>
+      </div>
+
+      <div class="two-col">
+
+        <div class="card">
+          <h3>Wireless & WAP Support</h3>
+          <ul class="check-list">
+            <li>Wireless access point setup and configuration</li>
+            <li>Access point placement planning</li>
+            <li>Business Wi-Fi configuration</li>
+            <li>SSID and guest-network configuration</li>
+            <li>Router and switch integration</li>
+            <li>Coverage and connectivity troubleshooting</li>
+            <li>New device connectivity support</li>
+            <li>Network documentation</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Server & Network Support</h3>
+          <ul class="check-list">
+            <li>Server installation and initial configuration support</li>
+            <li>User and shared-resource setup</li>
+            <li>LAN configuration and troubleshooting</li>
+            <li>Router and switch configuration support</li>
+            <li>Workstation and printer onboarding</li>
+            <li>File and shared-folder configuration</li>
+            <li>Backup planning and implementation support</li>
+            <li>Infrastructure documentation and handover</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="section-head">
+        <div class="eyebrow">How We Work</div>
+        <h2>Practical support from assessment to handover.</h2>
+      </div>
+
+      <div class="process">
+
+        <div class="card">
+          <div class="step-number">01 — ASSESS</div>
+          <h3>Understand the environment</h3>
+          <p>
+            We establish what equipment, users, connectivity and business
+            requirements are involved.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">02 — PLAN</div>
+          <h3>Define the solution</h3>
+          <p>
+            We identify the practical configuration, equipment or support
+            work required for the environment.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">03 — IMPLEMENT</div>
+          <h3>Configure & connect</h3>
+          <p>
+            Servers, devices, network components, wireless access points
+            or cloud services are configured as agreed.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="step-number">04 — SUPPORT</div>
+          <h3>Document & maintain</h3>
+          <p>
+            We provide practical handover information and can continue
+            supporting the organisation as its technology needs evolve.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <div class="card contact-box">
+        <div class="eyebrow">Talk to KLOUDEP</div>
+
+        <h2>Need help with your business IT environment?</h2>
+
+        <p>
+          Whether you need a new wireless access point, server setup,
+          office network, Microsoft 365 onboarding, device configuration
+          or ongoing IT support, tell us what your organisation needs.
+        </p>
+
+        <div class="actions" style="justify-content:center;">
+          <a class="btn primary" href="quotation.html">Get an IT Support Quote</a>
+          <a class="btn" href="mailto:info@kloudep.co.za">info@kloudep.co.za</a>
+          <a class="btn" href="tel:+27659051136">+27 65 905 1136</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-wrap">
+    <div>
+      <strong style="color:white;">KLOUDEP (Pty) Ltd</strong><br>
+      Business • Technology • ICT
+    </div>
+
+    <div>
+      Pretoria • Cape Town • South Africa
+    </div>
+
+    <div>
+      © 2026 KLOUDEP (Pty) Ltd
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const navLinks = document.getElementById("navLinks");
+
+  menuButton.addEventListener("click", function () {
+    navLinks.classList.toggle("open");
+  });
+</script>
+
+</body>
+</html>
