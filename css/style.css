@@ -1,0 +1,476 @@
+/* ============================================================
+   KLOUDEP WEBSITE
+   Shared Stylesheet
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN VARIABLES
+   ============================================================ */
+
+:root {
+  --bg: #05070c;
+  --card: #0f1624;
+  --line: #263043;
+
+  --cyan: #00f2fe;
+  --pink: #ff007f;
+
+  --text: #f8fafc;
+  --muted: #9aa8bd;
+
+  --max: 1160px;
+}
+
+
+/* ============================================================
+   2. GLOBAL RESET
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* ============================================================
+   3. PAGE CONTAINER
+   ============================================================ */
+
+.container {
+  width: min(var(--max), calc(100% - 40px));
+  margin: auto;
+}
+
+
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background: #05070cf5;
+  border-bottom: 1px solid var(--line);
+}
+
+
+/* ============================================================
+   5. NAVIGATION
+   ============================================================ */
+
+.nav {
+  min-height: 74px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+
+/* Brand */
+
+.brand {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+
+  object-fit: contain;
+}
+
+.brand small {
+  display: block;
+
+  color: var(--cyan);
+
+  font-size: 10px;
+}
+
+
+/* Navigation Links */
+
+.links {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+}
+
+.links a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.links a:hover,
+.links a[aria-current="page"] {
+  color: var(--cyan);
+}
+
+
+/* Mobile Menu Button */
+
+.menu {
+  display: none;
+
+  padding: 9px 12px;
+
+  background: transparent;
+  color: white;
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+
+/* ============================================================
+   6. BUTTONS
+   ============================================================ */
+
+.btn {
+  display: inline-block;
+
+  padding: 12px 20px;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.primary {
+  background: linear-gradient(
+    135deg,
+    var(--cyan),
+    var(--pink)
+  );
+
+  border: 0;
+  color: white;
+}
+
+
+/* ============================================================
+   7. HERO SECTION
+   ============================================================ */
+
+.hero {
+  padding: 88px 0 72px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-grid {
+  display: grid;
+
+  grid-template-columns: 1.2fr 0.8fr;
+
+  gap: 52px;
+
+  align-items: center;
+}
+
+
+/* ============================================================
+   8. TYPOGRAPHY
+   ============================================================ */
+
+.eyebrow {
+  color: var(--cyan);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 18px 0 22px;
+
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1.02;
+}
+
+h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+}
+
+.lead,
+.card p {
+  color: var(--muted);
+}
+
+.lead {
+  max-width: 780px;
+
+  font-size: 19px;
+}
+
+
+/* ============================================================
+   9. ACTION BUTTON GROUPS
+   ============================================================ */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 26px;
+}
+
+
+/* ============================================================
+   10. PANELS & CARDS
+   ============================================================ */
+
+.panel,
+.card {
+  padding: 26px;
+
+  background: var(--card);
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+
+/* ============================================================
+   11. QUICK SERVICE LINKS
+   ============================================================ */
+
+.quick {
+  display: grid;
+
+  gap: 10px;
+}
+
+.quick a {
+  padding: 13px;
+
+  border: 1px solid var(--line);
+  border-radius: 9px;
+
+  text-decoration: none;
+}
+
+.quick a:hover {
+  border-color: var(--cyan);
+}
+
+
+/* ============================================================
+   12. TRUST / SERVICE NAVIGATION BAR
+   ============================================================ */
+
+.trust {
+  border-bottom: 1px solid var(--line);
+}
+
+.trust-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.trust-grid a {
+  padding: 20px;
+
+  text-align: center;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   13. STANDARD SECTIONS
+   ============================================================ */
+
+.section {
+  padding: 72px 0;
+}
+
+.alt {
+  background: #080c14;
+}
+
+.head {
+  max-width: 760px;
+
+  margin-bottom: 30px;
+}
+
+
+/* ============================================================
+   14. GRID LAYOUTS
+   ============================================================ */
+
+.grid2 {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.grid3 {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+
+/* ============================================================
+   15. SERVICE CARDS
+   ============================================================ */
+
+.service {
+  text-decoration: none;
+}
+
+.service .card {
+  height: 100%;
+}
+
+.service:hover .card {
+  border-color: var(--cyan);
+}
+
+.tags {
+  color: var(--cyan);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   16. CONTACT PANEL
+   ============================================================ */
+
+.contact {
+  padding: 42px 24px;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   17. FOOTER
+   ============================================================ */
+
+footer {
+  padding: 38px 0;
+
+  color: var(--muted);
+
+  border-top: 1px solid var(--line);
+}
+
+.footer {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 30px;
+}
+
+.footer a {
+  display: block;
+
+  margin: 7px 0;
+
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   18. RESPONSIVE / MOBILE LAYOUT
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* Show mobile menu button */
+
+  .menu {
+    display: block;
+  }
+
+
+  /* Mobile navigation */
+
+  .links {
+    display: none;
+
+    position: absolute;
+
+    top: 74px;
+    left: 0;
+    right: 0;
+
+    padding: 20px;
+
+    background: #080c14;
+
+    border-bottom: 1px solid var(--line);
+
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .links.open {
+    display: flex;
+  }
+
+
+  /* Convert grids to single column */
+
+  .hero-grid,
+  .grid2,
+  .grid3,
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Keep trust links in two columns */
+
+  .trust-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
