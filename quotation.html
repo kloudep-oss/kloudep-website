@@ -375,6 +375,20 @@
             <option value="bookkeeping" data-base="1500" data-mult="18" data-title="Automated Bookkeeping & Scanned PDF Bank Conversion">Bookkeeping & Bank Statement Conversion</option>
             <option value="codebase" data-base="4500" data-mult="35" data-title="Codebase Architecture, API Docs & Vulnerability Dossier">Codebase Mapping & Systems Architecture</option>
             <option value="hardware" data-base="3200" data-mult="15" data-title="ICT Hardware Supply & Customs Logistics Deployment">ICT Hardware Supply & Customs Distribution</option>
+            <option value="company-startup" data-base="1750" data-mult="0" data-title="Company Startup Pack — Service fee R1,750 + CIPC/government fees">Company Startup Pack — R1,750 + official fees</option>
+            <option value="company-startup-code" data-base="950" data-mult="0" data-title="Company Startup Pack — Service fee R950 + CIPC/government fees">Company Startup Pack WITH CODE — R950 + official fees</option>
+            <option value="bo-filing" data-base="950" data-mult="0" data-title="BO Filing Only — Service fee R950 + CIPC/government fees">BO Filing Only — R950 + official fees</option>
+            <option value="bo-filing-code" data-base="450" data-mult="0" data-title="BO Filing Only — Service fee R450 + CIPC/government fees">BO Filing Only WITH CODE — R450 + official fees</option>
+            <option value="annual-bo" data-base="1250" data-mult="0" data-title="Annual Return + BO — Service fee R1,250 + CIPC/government fees">Annual Return + BO — R1,250 + official fees</option>
+            <option value="annual-bo-code" data-base="650" data-mult="0" data-title="Annual Return + BO — Service fee R650 + CIPC/government fees">Annual Return + BO WITH CODE — R650 + official fees</option>
+            <option value="employer-setup" data-base="1500" data-mult="0" data-title="Employer Setup (PAYE/UIF/SDL) — Service fee R1,500">Employer Setup (PAYE/UIF/SDL) — R1,500</option>
+            <option value="employer-setup-code" data-base="750" data-mult="0" data-title="Employer Setup (PAYE/UIF/SDL) — Service fee R750">Employer Setup WITH CODE — R750</option>
+            <option value="efiling-help" data-base="750" data-mult="0" data-title="eFiling Setup/Help — Service fee R750">eFiling Setup/Help — R750</option>
+            <option value="efiling-help-code" data-base="350" data-mult="0" data-title="eFiling Setup/Help — Service fee R350">eFiling Setup/Help WITH CODE — R350</option>
+            <option value="compliance-monthly" data-base="500" data-mult="0" data-title="Monthly Compliance Retainer — Service fee R500 per month">Monthly Compliance Retainer — R500/month</option>
+            <option value="compliance-monthly-code" data-base="250" data-mult="0" data-title="Monthly Compliance Retainer — Service fee R250 per month">Monthly Compliance Retainer WITH CODE — R250/month</option>
+            <option value="compliance-annual" data-base="3000" data-mult="0" data-title="Annual Compliance Retainer — Service fee R3,000 per year">Annual Compliance Retainer — R3,000/year</option>
+            <option value="compliance-annual-code" data-base="1500" data-mult="0" data-title="Annual Compliance Retainer — Service fee R1,500 per year">Annual Compliance Retainer WITH CODE — R1,500/year</option>
           </select>
         </div>
 
@@ -579,9 +593,19 @@
     const standardTotal =
       Math.round(base + (units * multiplier));
 
-    // Price after SLA adjustment
+    // Compliance catalogue items have multiplier 0 and use their exact listed service fee.
+    // Existing enterprise services continue to use the selected SLA adjustment.
+    const isFixedComplianceService =
+      ['company-startup','company-startup-code','bo-filing','bo-filing-code',
+       'annual-bo','annual-bo-code','employer-setup','employer-setup-code',
+       'efiling-help','efiling-help-code','compliance-monthly',
+       'compliance-monthly-code','compliance-annual','compliance-annual-code']
+      .includes(serviceCode);
+
     const subtotal =
-      Math.round(standardTotal * slaMultiplier);
+      isFixedComplianceService
+        ? Math.round(standardTotal)
+        : Math.round(standardTotal * slaMultiplier);
 
     const vat =
       Math.round(subtotal * 0.15);
@@ -649,8 +673,17 @@
     document.getElementById('outItemTitle').innerText =
       q.serviceTitle;
 
+    const fixedComplianceCodes = [
+      'company-startup','company-startup-code','bo-filing','bo-filing-code',
+      'annual-bo','annual-bo-code','employer-setup','employer-setup-code',
+      'efiling-help','efiling-help-code','compliance-monthly',
+      'compliance-monthly-code','compliance-annual','compliance-annual-code'
+    ];
+
     document.getElementById('outItemScope').innerText =
-      q.units + ' Units';
+      fixedComplianceCodes.includes(q.serviceCode)
+        ? 'Service Fee'
+        : q.units + ' Units';
 
     document.getElementById('outItemTotal').innerText =
       formatMoney(q.subtotal);
@@ -849,10 +882,22 @@
       return;
     }
 
+    const governmentFeeServices = [
+      'company-startup','company-startup-code',
+      'bo-filing','bo-filing-code',
+      'annual-bo','annual-bo-code'
+    ];
+
+    const governmentFeeNote =
+      governmentFeeServices.includes(q.serviceCode)
+        ? ` Service fee ${formatMoney(q.subtotal)} + CIPC/government fees.`
+        : '';
+
     const message =
       `Hello KLOUDEP Desk, I generated Quotation ${q.quoteNumber} ` +
       `for ${q.companyName} regarding "${q.serviceTitle}" ` +
-      `with total investment ${formatMoney(q.finalTotal)}. ` +
+      `with total investment ${formatMoney(q.finalTotal)}.` +
+      governmentFeeNote + ` ` +
       `Please confirm queue allocation and dispatch requirements.`;
 
     const encodedMessage =
