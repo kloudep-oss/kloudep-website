@@ -407,8 +407,8 @@
           </select>
         </div>
 
-        <div class="input-group">
-          <label for="rangeVolume">Document Scope / Volume: <span id="lblUnits" style="color:var(--accent-cyan); font-weight:700;">60 Units</span></label>
+        <div class="input-group" id="volumeGroup">
+          <label for="rangeVolume">Document Volume / Pages: <span id="lblUnits" style="color:var(--accent-cyan); font-weight:700;">60 Pages</span></label>
           <input type="range" id="rangeVolume" min="10" max="300" value="60" class="input-ctrl" oninput="updateQuotation()" />
         </div>
 
@@ -464,7 +464,6 @@
             <div class="sheet-comp-info">
               <strong>KLOUDEP (Pty) Ltd</strong><br />
               Reg: 2021/387994/07 • VAT: 4610305692<br />
-              SARS Customs Importer/Exporter: CU25292556<br />
               Pretoria HQ & Cape Town Network<br />
               Direct: +27 65 905 1136 • info@kloudep.co.za
             </div>
@@ -682,8 +681,32 @@
   function updateQuotation() {
     const q = getQuotationData();
 
+    // Only services whose pricing genuinely depends on document/page volume
+    // display the page slider. Fixed-fee/admin/retainer/hardware services hide it.
+    const pageBasedServices = [
+      'tender',
+      'cipc',
+      'lease',
+      'codebase'
+    ];
+
+    const usesPageVolume =
+      pageBasedServices.includes(q.serviceCode);
+
+    const volumeGroup =
+      document.getElementById('volumeGroup');
+
+    const volumeSlider =
+      document.getElementById('rangeVolume');
+
+    volumeGroup.style.display =
+      usesPageVolume ? 'block' : 'none';
+
+    volumeSlider.disabled =
+      !usesPageVolume;
+
     document.getElementById('lblUnits').innerText =
-      q.units + ' Units / Pages';
+      q.units + ' Pages';
 
     document.getElementById('outItemTitle').innerText =
       q.serviceTitle;
@@ -770,7 +793,9 @@
     document.getElementById('outItemScope').innerText =
       fixedComplianceCodes.includes(q.serviceCode)
         ? 'Service Fee'
-        : q.units + ' Units';
+        : usesPageVolume
+          ? q.units + ' Pages'
+          : 'Service';
 
     document.getElementById('outItemTotal').innerText =
       formatMoney(q.subtotal);
