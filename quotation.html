@@ -673,6 +673,78 @@
     document.getElementById('outItemTitle').innerText =
       q.serviceTitle;
 
+    // ----------------------------------------------------------
+    // SERVICE DESCRIPTION LOGIC
+    // This changes display text only. Pricing, VAT, Supabase
+    // and WhatsApp logic are intentionally untouched.
+    // ----------------------------------------------------------
+
+    const serviceDescriptions = {
+      'tender':
+        'Deconstruction of compliance points, returnable checklist & penalty map.',
+
+      'cipc':
+        'Beneficial ownership, corporate compliance and POPIA documentation review.',
+
+      'lease':
+        'Commercial contract review focused on material risks, obligations and red-flag clauses.',
+
+      'bookkeeping':
+        'Conversion and organisation of bookkeeping records and bank statement data.',
+
+      'codebase':
+        'Technical review of application architecture, APIs, documentation and system structure.',
+
+      'hardware':
+        'ICT hardware supply, procurement coordination and deployment logistics support.',
+
+      'company-startup':
+        'Company registration support, essential startup compliance setup and preparation of core company records. Official CIPC/government fees are charged separately.',
+
+      'company-startup-code':
+        'Company registration support, essential startup compliance setup and preparation of core company records. Official CIPC/government fees are charged separately.',
+
+      'bo-filing':
+        'Preparation and submission support for CIPC Beneficial Ownership information and required ownership records. Official CIPC/government fees are charged separately.',
+
+      'bo-filing-code':
+        'Preparation and submission support for CIPC Beneficial Ownership information and required ownership records. Official CIPC/government fees are charged separately.',
+
+      'annual-bo':
+        'Annual Return and Beneficial Ownership filing support to help maintain current CIPC company records. Official CIPC/government fees are charged separately.',
+
+      'annual-bo-code':
+        'Annual Return and Beneficial Ownership filing support to help maintain current CIPC company records. Official CIPC/government fees are charged separately.',
+
+      'employer-setup':
+        'Employer registration and administrative setup support for PAYE, UIF and SDL with the relevant authorities.',
+
+      'employer-setup-code':
+        'Employer registration and administrative setup support for PAYE, UIF and SDL with the relevant authorities.',
+
+      'efiling-help':
+        'SARS eFiling profile setup, administrative assistance and guidance with accessing and managing available tax services.',
+
+      'efiling-help-code':
+        'SARS eFiling profile setup, administrative assistance and guidance with accessing and managing available tax services.',
+
+      'compliance-monthly':
+        'Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.',
+
+      'compliance-monthly-code':
+        'Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.',
+
+      'compliance-annual':
+        'Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.',
+
+      'compliance-annual-code':
+        'Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.'
+    };
+
+    document.getElementById('outItemDesc').innerText =
+      serviceDescriptions[q.serviceCode] ||
+      'Professional KLOUDEP business and technology service.';
+
     const fixedComplianceCodes = [
       'company-startup','company-startup-code','bo-filing','bo-filing-code',
       'annual-bo','annual-bo-code','employer-setup','employer-setup-code',
