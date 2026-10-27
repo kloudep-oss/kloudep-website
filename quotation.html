@@ -525,74 +525,441 @@
     </div>
   </div>
 
-  <script>
-    function updateQuotation() {
-      const selService = document.getElementById('selService');
-      const opt = selService.options[selService.selectedIndex];
-      const base = parseFloat(opt.getAttribute('data-base'));
-      const mult = parseFloat(opt.getAttribute('data-mult'));
-      const title = opt.getAttribute('data-title');
+<script>
+  // ============================================================
+  // KLOUDEP OFFICIAL QUOTATION ENGINE
+  // Production Supabase-connected version
+  // ============================================================
 
-      const units = parseInt(document.getElementById('rangeVolume').value);
-      document.getElementById('lblUnits').innerText = units + " Units / Pages";
+  let isSavingQuote = false;
 
-      const slaMult = parseFloat(document.getElementById('selSLA').value);
+  function formatMoney(amount) {
+    return 'R ' + Number(amount).toLocaleString('en-ZA', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
 
-      // Calculations
-      const subtotal = Math.round((base + (units * mult)) * slaMult);
-      const vat = Math.round(subtotal * 0.15);
-      const grandTotal = subtotal + vat;
+  function generateQuoteReference() {
+    const year = new Date().getFullYear();
+    const randomNumber = Math.floor(100000 + Math.random() * 900000);
 
-      // Update Sheet View
-      document.getElementById('outItemTitle').innerText = title;
-      document.getElementById('outItemScope').innerText = units + " Units";
-      document.getElementById('outItemTotal').innerText = 'R ' + subtotal.toLocaleString('en-ZA') + '.00';
-      document.getElementById('outSubtotal').innerText = 'R ' + subtotal.toLocaleString('en-ZA') + '.00';
-      document.getElementById('outVat').innerText = 'R ' + vat.toLocaleString('en-ZA') + '.00';
-      document.getElementById('outGrandTotal').innerText = 'R ' + grandTotal.toLocaleString('en-ZA') + '.00';
+    return `KLP-${year}-${randomNumber}`;
+  }
 
-      // Customer fields
-      const cComp = document.getElementById('custCompany').value.trim();
-      const cName = document.getElementById('custName').value.trim();
-      const cContact = document.getElementById('custContact').value.trim();
-      const cVenue = document.getElementById('selVenue').value;
+  function getQuotationData() {
+    const serviceSelect = document.getElementById('selService');
+    const serviceOption =
+      serviceSelect.options[serviceSelect.selectedIndex];
 
-      document.getElementById('outCustCompany').innerText = cComp || "Valued Enterprise Client";
-      document.getElementById('outCustName').innerText = cName ? "Attn: " + cName : "Attn: Executive Director";
-      document.getElementById('outCustContact').innerText = cContact || "Cloud Dispatch";
-      document.getElementById('outVenue').innerText = cVenue;
+    const base =
+      parseFloat(serviceOption.getAttribute('data-base')) || 0;
+
+    const multiplier =
+      parseFloat(serviceOption.getAttribute('data-mult')) || 0;
+
+    const serviceTitle =
+      serviceOption.getAttribute('data-title') ||
+      serviceOption.textContent.trim();
+
+    const serviceCode = serviceOption.value;
+
+    const units =
+      parseInt(document.getElementById('rangeVolume').value, 10) || 0;
+
+    const slaSelect = document.getElementById('selSLA');
+
+    const slaMultiplier =
+      parseFloat(slaSelect.value) || 1;
+
+    const slaDescription =
+      slaSelect.options[slaSelect.selectedIndex].textContent.trim();
+
+    // Price before SLA adjustment
+    const standardTotal =
+      Math.round(base + (units * multiplier));
+
+    // Price after SLA adjustment
+    const subtotal =
+      Math.round(standardTotal * slaMultiplier);
+
+    const vat =
+      Math.round(subtotal * 0.15);
+
+    const finalTotal =
+      subtotal + vat;
+
+    const companyName =
+      document.getElementById('custCompany').value.trim();
+
+    const customerName =
+      document.getElementById('custName').value.trim();
+
+    const contact =
+      document.getElementById('custContact').value.trim();
+
+    const venue =
+      document.getElementById('selVenue').value;
+
+    const quoteNumber =
+      document.getElementById('outQuoteRef').innerText.trim();
+
+    let email = null;
+    let phone = null;
+
+    if (contact) {
+      if (contact.includes('@')) {
+        email = contact;
+      } else {
+        phone = contact;
+      }
     }
 
-    function sendQuoteWhatsApp() {
-      const comp = document.getElementById('outCustCompany').innerText;
-      const title = document.getElementById('outItemTitle').innerText;
-      const total = document.getElementById('outGrandTotal').innerText;
-      const ref = document.getElementById('outQuoteRef').innerText;
+    return {
+      serviceCode,
+      serviceTitle,
+      units,
+      slaMultiplier,
+      slaDescription,
+      standardTotal,
+      subtotal,
+      vat,
+      finalTotal,
+      companyName,
+      customerName,
+      contact,
+      email,
+      phone,
+      venue,
+      quoteNumber
+    };
+  }
 
-      const msg = encodeURIComponent(
-        `Hello KLOUDEP Desk, I generated Quotation ${ref} for ${comp} regarding "${title}" with total investment ${total}. Please confirm queue allocation and dispatch requirements.`
-      );
-      window.open(`https://wa.me/27659051136?text=${msg}`, '_blank');
+
+  // ============================================================
+  // UPDATE QUOTATION PREVIEW
+  // ============================================================
+
+  function updateQuotation() {
+    const q = getQuotationData();
+
+    document.getElementById('lblUnits').innerText =
+      q.units + ' Units / Pages';
+
+    document.getElementById('outItemTitle').innerText =
+      q.serviceTitle;
+
+    document.getElementById('outItemScope').innerText =
+      q.units + ' Units';
+
+    document.getElementById('outItemTotal').innerText =
+      formatMoney(q.subtotal);
+
+    document.getElementById('outSubtotal').innerText =
+      formatMoney(q.subtotal);
+
+    document.getElementById('outVat').innerText =
+      formatMoney(q.vat);
+
+    document.getElementById('outGrandTotal').innerText =
+      formatMoney(q.finalTotal);
+
+    document.getElementById('outCustCompany').innerText =
+      q.companyName || 'Valued Enterprise Client';
+
+    document.getElementById('outCustName').innerText =
+      q.customerName
+        ? 'Attn: ' + q.customerName
+        : 'Attn: Executive Director';
+
+    document.getElementById('outCustContact').innerText =
+      q.contact || 'Cloud Dispatch';
+
+    document.getElementById('outVenue').innerText =
+      q.venue;
+  }
+
+
+  // ============================================================
+  // SAVE QUOTATION TO SUPABASE
+  // ============================================================
+
+  async function saveQuotationToSupabase() {
+
+    if (isSavingQuote) {
+      return null;
     }
 
-    // Generate random reference code on load
-    window.onload = () => {
-      const randomRef = 'KLP-2026-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('outQuoteRef').innerText = randomRef;
-      
-      const today = new Date();
-      const options = { day: 'numeric', month: 'long', year: 'numeric' };
-      document.getElementById('outQuoteDate').innerText = today.toLocaleDateString('en-ZA', options);
+    isSavingQuote = true;
 
-      // Check URL parameters for direct landing (e.g. quotation.html?service=cipc)
-      const urlParams = new URLSearchParams(window.location.search);
-      const serviceParam = urlParams.get('service');
-      if (serviceParam) {
-        document.getElementById('selService').value = serviceParam;
+    try {
+
+      if (
+        typeof supabaseClient === 'undefined' ||
+        !supabaseClient
+      ) {
+        throw new Error(
+          'Supabase client is not available.'
+        );
       }
 
-      updateQuotation();
+      const q = getQuotationData();
+
+      /*
+        IMPORTANT:
+        These fields match the columns already confirmed
+        in your public.quotes table:
+
+        quote_number
+        customer_name
+        phone
+        email
+        company_name
+        services
+        standard_total
+        final_total
+        status
+      */
+
+      const quoteRecord = {
+
+        quote_number:
+          q.quoteNumber,
+
+        customer_name:
+          q.customerName ||
+          q.companyName ||
+          'Website Customer',
+
+        phone:
+          q.phone,
+
+        email:
+          q.email,
+
+        company_name:
+          q.companyName || null,
+
+        services:
+          [q.serviceTitle],
+
+        standard_total:
+          q.standardTotal,
+
+        final_total:
+          q.finalTotal,
+
+        status:
+          'generated'
+      };
+
+      console.log(
+        'KLOUDEP: Attempting database insert:',
+        quoteRecord
+      );
+
+      const { data, error } =
+        await supabaseClient
+          .from('quotes')
+          .insert([quoteRecord])
+          .select();
+
+      if (error) {
+
+        console.error(
+          'KLOUDEP Supabase insert error:',
+          error
+        );
+
+        throw error;
+      }
+
+      console.log(
+        'KLOUDEP: Quotation successfully registered:',
+        data
+      );
+
+      return data;
+
+    } catch (error) {
+
+      console.error(
+        'KLOUDEP quotation registration failed:',
+        error
+      );
+
+      alert(
+        'The quotation could not be registered in the KLOUDEP database.\n\n' +
+        'WhatsApp will not open until the quotation is successfully registered.\n\n' +
+        'Database message: ' +
+        (error.message || 'Unknown database error')
+      );
+
+      return null;
+
+    } finally {
+
+      isSavingQuote = false;
+    }
+  }
+
+
+  // ============================================================
+  // WHATSAPP LOCK-IN
+  // ============================================================
+
+  async function sendQuoteWhatsApp() {
+
+    if (isSavingQuote) {
+      return;
+    }
+
+    const company =
+      document.getElementById('custCompany').value.trim();
+
+    if (!company) {
+
+      alert(
+        'Please enter the Recipient Company / Organization Name before locking in the quotation.'
+      );
+
+      document.getElementById('custCompany').focus();
+
+      return;
+    }
+
+    updateQuotation();
+
+    const q = getQuotationData();
+
+    /*
+      CRITICAL:
+      Database registration happens BEFORE WhatsApp opens.
+    */
+
+    const savedQuotation =
+      await saveQuotationToSupabase();
+
+    if (!savedQuotation) {
+
+      console.error(
+        'KLOUDEP: WhatsApp cancelled because database registration failed.'
+      );
+
+      return;
+    }
+
+    const message =
+      `Hello KLOUDEP Desk, I generated Quotation ${q.quoteNumber} ` +
+      `for ${q.companyName} regarding "${q.serviceTitle}" ` +
+      `with total investment ${formatMoney(q.finalTotal)}. ` +
+      `Please confirm queue allocation and dispatch requirements.`;
+
+    const encodedMessage =
+      encodeURIComponent(message);
+
+    console.log(
+      'KLOUDEP: Database registration successful. Opening WhatsApp.'
+    );
+
+    window.open(
+      `https://wa.me/27659051136?text=${encodedMessage}`,
+      '_blank'
+    );
+
+    /*
+      Generate a NEW reference after successful registration.
+
+      This prevents the next quotation from accidentally
+      using the same quotation reference.
+    */
+
+    setTimeout(function () {
+
+      document.getElementById('outQuoteRef').innerText =
+        generateQuoteReference();
+
+    }, 1000);
+  }
+
+
+  // ============================================================
+  // PAGE INITIALISATION
+  // ============================================================
+
+  window.onload = function () {
+
+    // Generate fresh quotation reference
+    document.getElementById('outQuoteRef').innerText =
+      generateQuoteReference();
+
+
+    // Set current date
+    const today =
+      new Date();
+
+    const dateOptions = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
     };
-  </script>
+
+    document.getElementById('outQuoteDate').innerText =
+      today.toLocaleDateString(
+        'en-ZA',
+        dateOptions
+      );
+
+
+    // ----------------------------------------------------------
+    // DIRECT SERVICE LANDING
+    // Example:
+    // quotation.html?service=cipc
+    // ----------------------------------------------------------
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const serviceParam =
+      urlParams.get('service');
+
+    if (serviceParam) {
+
+      const serviceSelect =
+        document.getElementById('selService');
+
+      const validService =
+        Array.from(serviceSelect.options).some(
+          function(option) {
+            return option.value === serviceParam;
+          }
+        );
+
+      if (validService) {
+        serviceSelect.value =
+          serviceParam;
+      }
+    }
+
+
+    // Initial quotation calculation
+    updateQuotation();
+
+
+    // Diagnostic information
+    console.log(
+      'KLOUDEP Official Quotation Engine loaded.'
+    );
+
+    console.log(
+      'Supabase connection:',
+      typeof supabaseClient !== 'undefined'
+        ? 'AVAILABLE'
+        : 'NOT AVAILABLE'
+    );
+  };
+</script>
 </body>
 </html>
