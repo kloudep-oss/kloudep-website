@@ -183,6 +183,21 @@
     .input-ctrl:focus {
       border-color: var(--accent-cyan);
     }
+
+    /* Keep customer-entry fields fully interactive */
+    input.input-ctrl {
+      position: relative;
+      z-index: 5;
+      pointer-events: auto !important;
+      user-select: text;
+      -webkit-user-select: text;
+      cursor: text;
+    }
+
+    input.input-ctrl:disabled,
+    input.input-ctrl[readonly] {
+      pointer-events: auto !important;
+    }
     .input-ctrl option {
       background: #0b101a;
       color: #fff;
@@ -410,17 +425,17 @@
         
         <div class="input-group">
           <label>Recipient Company / Organization Name</label>
-          <input type="text" id="custCompany" class="input-ctrl" placeholder="e.g. Apex Engineering Pty Ltd" oninput="updateQuotation()" />
+          <input type="text" id="custCompany" class="input-ctrl" placeholder="e.g. Apex Engineering Pty Ltd" autocomplete="organization" oninput="updateQuotation()" />
         </div>
 
         <div class="input-group">
           <label>Attention / Contact Person</label>
-          <input type="text" id="custName" class="input-ctrl" placeholder="e.g. Mr. S. Khumalo (Managing Director)" oninput="updateQuotation()" />
+          <input type="text" id="custName" class="input-ctrl" placeholder="e.g. Mr. S. Khumalo (Managing Director)" autocomplete="name" oninput="updateQuotation()" />
         </div>
 
         <div class="input-group">
           <label>Recipient Email or Mobile (For Dispatch)</label>
-          <input type="text" id="custContact" class="input-ctrl" placeholder="e.g. director@apexeng.co.za / +27 82 000 0000" oninput="updateQuotation()" />
+          <input type="text" id="custContact" class="input-ctrl" placeholder="e.g. director@apexeng.co.za / +27 82 000 0000" autocomplete="email" inputmode="text" oninput="updateQuotation()" />
         </div>
 
         <div class="input-group">
@@ -608,10 +623,10 @@
         : Math.round(standardTotal * slaMultiplier);
 
     const vat =
-      Math.round(subtotal * 0.15);
+      Number((subtotal * 0.15).toFixed(2));
 
     const finalTotal =
-      subtotal + vat;
+      Number((subtotal + vat).toFixed(2));
 
     const companyName =
       document.getElementById('custCompany').value.trim();
