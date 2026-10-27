@@ -664,7 +664,7 @@
             </div>
             <div style="text-align: right;">
               <div class="sheet-meta-title">Quotation Reference:</div>
-              <strong id="outQuoteRef">KLP-2026-8821</strong><br />
+              <strong id="outQuoteRef">Pending</strong><br />
               <span>Date: <span id="outQuoteDate">12 September 2026</span></span><br />
               <span>Venue: <span id="outVenue">Pretoria HQ</span></span>
             </div>
@@ -726,7 +726,7 @@
 
         <!-- Premium KLOUDEP Action Buttons -->
         <div class="quote-actions" aria-label="Quotation actions">
-          <button type="button" class="quote-action quote-action-pdf" onclick="window.print()" aria-label="Download or print quotation PDF">
+          <button type="button" class="quote-action quote-action-pdf" onclick="prepareAndPrintQuote()" aria-label="Download or print quotation PDF">
             <span class="quote-action-icon"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i></span>
             <span class="quote-action-copy">
               <span class="quote-action-title">Download PDF</span>
@@ -756,6 +756,17 @@
   // ============================================================
 
   let isSavingQuote = false;
+  let activeQuoteReference = null;
+
+  function ensureQuoteReference() {
+    if (!activeQuoteReference) {
+      activeQuoteReference = generateQuoteReference();
+      document.getElementById('outQuoteRef').innerText =
+        activeQuoteReference;
+    }
+
+    return activeQuoteReference;
+  }
 
   function formatMoney(amount) {
     return 'R ' + Number(amount).toLocaleString('en-ZA', {
@@ -769,6 +780,17 @@
     const randomNumber = Math.floor(100000 + Math.random() * 900000);
 
     return `KLP-${year}-${randomNumber}`;
+  }
+
+  function prepareAndPrintQuote() {
+    ensureQuoteReference();
+    updateQuotation();
+
+    // Allow the newly assigned reference to render before
+    // the browser opens its print / Save PDF dialog.
+    requestAnimationFrame(function () {
+      window.print();
+    });
   }
 
   function getQuotationData() {
@@ -1169,6 +1191,7 @@
       return;
     }
 
+    ensureQuoteReference();
     updateQuotation();
 
     const q = getQuotationData();
@@ -1220,19 +1243,6 @@
       '_blank'
     );
 
-    /*
-      Generate a NEW reference after successful registration.
-
-      This prevents the next quotation from accidentally
-      using the same quotation reference.
-    */
-
-    setTimeout(function () {
-
-      document.getElementById('outQuoteRef').innerText =
-        generateQuoteReference();
-
-    }, 1000);
   }
 
 
@@ -1241,11 +1251,6 @@
   // ============================================================
 
   window.onload = function () {
-
-    // Generate fresh quotation reference
-    document.getElementById('outQuoteRef').innerText =
-      generateQuoteReference();
-
 
     // Set current date
     const today =
