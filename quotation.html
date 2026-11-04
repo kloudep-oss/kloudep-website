@@ -320,6 +320,12 @@
       line-height: 1.5;
     }
 
+    .quotation-issued .input-ctrl:disabled,
+    .quotation-issued .agent-apply-btn:disabled {
+      opacity: 0.68;
+      cursor: not-allowed;
+    }
+
     .btn-action-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -327,20 +333,79 @@
       margin-top: 20px;
     }
 
+    @page {
+      size: A4 portrait;
+      margin: 8mm;
+    }
+
     @media print {
-      body * {
-        visibility: hidden;
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
       }
-      .quote-sheet, .quote-sheet * {
-        visibility: visible;
+
+      body > * {
+        display: none !important;
       }
+
+      body > .page-shell {
+        display: block !important;
+      }
+
+      .page-shell > * {
+        display: none !important;
+      }
+
+      .page-shell > .quote-workspace {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
+      }
+
+      .quote-workspace > * {
+        display: none !important;
+      }
+
+      .quote-workspace > .quote-preview-wrap {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .quote-preview-wrap > * {
+        display: none !important;
+      }
+
+      .quote-preview-wrap > .quote-sheet {
+        display: block !important;
+      }
+
       .quote-sheet {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        box-shadow: none;
-        padding: 20px;
+        position: static !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 10mm !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+        page-break-after: avoid !important;
+        break-after: avoid-page !important;
+      }
+
+      .sheet-header,
+      .sheet-meta,
+      .quote-table,
+      .calc-totals,
+      .sheet-footer {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
       }
     }
 
@@ -955,6 +1020,29 @@
     showQuoteSuccess(reference);
   }
 
+  function lockIssuedQuotation() {
+    const editableIds = [
+      'selService',
+      'agentCode',
+      'applyAgentCode',
+      'rangeVolume',
+      'selSLA',
+      'custCompany',
+      'custName',
+      'custContact',
+      'selVenue'
+    ];
+
+    editableIds.forEach(function(id) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      element.disabled = true;
+      element.setAttribute('aria-disabled', 'true');
+    });
+
+    document.documentElement.classList.add('quotation-issued');
+  }
+
   function formatMoney(amount) {
     return 'R ' + Number(amount).toLocaleString('en-ZA', {
       minimumFractionDigits: 2,
@@ -1047,6 +1135,7 @@
         activeSavedQuotation = saved;
         activeSavedSnapshot = currentSnapshot;
         setOfficialQuoteReference(saved.quote_number);
+        lockIssuedQuotation();
 
         console.log(
           saved.created_new
