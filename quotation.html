@@ -657,6 +657,14 @@
     .agent-offer-row td{color:#047857!important;font-weight:700}
     @media(max-width:520px){.agent-code-head{display:block}.agent-status{display:inline-flex;margin-top:10px}.agent-code-row{grid-template-columns:1fr}.agent-apply-btn{min-height:46px}}
 
+  
+    .agent-offer-summary{margin-top:13px;padding-top:12px;border-top:1px solid var(--premium-line);display:grid;gap:7px}
+    .agent-offer-summary>div{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--premium-muted);font-size:.69rem}
+    .agent-offer-summary strong{color:#eaf3ff;font-size:.72rem}
+    .agent-offer-summary .saving{padding-top:7px;margin-top:2px;border-top:1px dashed rgba(255,255,255,.09);color:#6ee7b7}
+    .agent-offer-summary .saving strong{color:#6ee7b7}
+    .offer-badge{display:inline-flex;align-items:center;margin-top:5px;padding:3px 7px;border-radius:999px;background:#ecfdf5;color:#047857;font-size:8px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+
   </style>
 </head>
 <body>
@@ -726,6 +734,11 @@
             <button type="button" class="agent-apply-btn" id="applyAgentCode" onclick="applyAgentCode()">Apply Code</button>
           </div>
           <div class="agent-feedback" id="agentFeedback" aria-live="polite"></div>
+          <div class="agent-offer-summary" id="agentOfferSummary" style="display:none;">
+            <div><span>Standard service fee</span><strong id="agentStandardFee">R 0,00</strong></div>
+            <div><span>Authorised agent offer</span><strong id="agentOfferFee">R 0,00</strong></div>
+            <div class="saving"><span>You save</span><strong id="agentSaving">R 0,00</strong></div>
+          </div>
         </div>
 
         <div class="input-group" id="volumeGroup">
@@ -966,6 +979,8 @@
     const s=document.getElementById('agentStatus'), f=document.getElementById('agentFeedback');
     if(s){s.textContent='Not applied';s.classList.remove('valid')}
     if(f){f.textContent=message||'';f.className='agent-feedback'}
+    const summary=document.getElementById('agentOfferSummary');
+    if(summary) summary.style.display='none';
   }
 
   async function applyAgentCode() {
@@ -994,6 +1009,19 @@
       console.error('KLOUDEP agent-code validation failed:',error);
       resetAgentOffer('We could not validate this code right now. Please try again.');feedback.classList.add('error');updateQuotation();
     }finally{agentValidationInFlight=false;button.disabled=false;button.textContent='Apply Code'}
+  }
+
+  function updateAgentOfferSummary(q) {
+    const summary=document.getElementById('agentOfferSummary');
+    if(!summary) return;
+    if(!q.agentOffer || q.discountAmount<=0){
+      summary.style.display='none';
+      return;
+    }
+    document.getElementById('agentStandardFee').textContent=formatZAR(q.standardTotal);
+    document.getElementById('agentOfferFee').textContent=formatZAR(q.subtotal);
+    document.getElementById('agentSaving').textContent=formatZAR(q.discountAmount);
+    summary.style.display='grid';
   }
 
   function getQuotationData() {
@@ -1110,6 +1138,7 @@
     }
     const q = getQuotationData();
     updateProgressState();
+    updateAgentOfferSummary(q);
 
     // Only services whose pricing genuinely depends on document/page volume
     // display the page slider. Fixed-fee/admin/retainer/hardware services hide it.
