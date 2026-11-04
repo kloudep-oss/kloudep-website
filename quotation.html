@@ -906,7 +906,18 @@
   // ============================================================
 
   let isSavingQuote = false;
+  const quotationRequestKey =
+    (window.crypto && typeof window.crypto.randomUUID === 'function')
+      ? window.crypto.randomUUID()
+      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          const r = Math.random() * 16 | 0;
+          const v = c === 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+  let quotationSavePromise = null;
   let activeQuoteReference = null;
+  let activeSavedQuotation = null;
+  let activeSavedSnapshot = null;
   let activeAgentOffer = null;
   let agentValidationInFlight = false;
   const agentServiceMap = {
@@ -938,15 +949,10 @@
     steps[2].classList.toggle('active', hasClient);
   }
 
-  function ensureQuoteReference() {
-    if (!activeQuoteReference) {
-      activeQuoteReference = generateQuoteReference();
-      document.getElementById('outQuoteRef').innerText =
-        activeQuoteReference;
-      showQuoteSuccess(activeQuoteReference);
-    }
-
-    return activeQuoteReference;
+  function setOfficialQuoteReference(reference) {
+    activeQuoteReference = reference;
+    document.getElementById('outQuoteRef').innerText = reference;
+    showQuoteSuccess(reference);
   }
 
   function formatMoney(amount) {
@@ -956,19 +962,134 @@
     });
   }
 
-  function generateQuoteReference() {
-    const year = new Date().getFullYear();
-    const randomNumber = Math.floor(100000 + Math.random() * 900000);
-
-    return `KLP-${year}-${randomNumber}`;
+  function buildQuotationSnapshot(q) {
+    return JSON.stringify({
+      customerName: q.customerName || q.companyName || 'Website Customer',
+      phone: q.phone || null,
+      email: q.email || null,
+      companyName: q.companyName || null,
+      services: [q.serviceTitle],
+      standardTotal: Number(q.standardTotal),
+      finalTotal: Number(q.finalTotal),
+      discountAmount: Number(q.discountAmount || 0),
+      offerCode: q.agentOffer ? q.agentOffer.code : null,
+      status: 'generated'
+    });
   }
 
-  function prepareAndPrintQuote() {
-    ensureQuoteReference();
+  async function ensureQuotationSaved() {
+    if (quotationSavePromise) {
+      return quotationSavePromise;
+    }
+
+    const q = getQuotationData();
+    const currentSnapshot = buildQuotationSnapshot(q);
+
+    if (activeSavedQuotation) {
+      if (currentSnapshot !== activeSavedSnapshot) {
+        alert(
+          'This quotation has already been issued as ' + activeQuoteReference + '.\n\n' +
+          'Its saved commercial details are immutable. Reload the page to create a new quotation for changed details.'
+        );
+        return null;
+      }
+      return activeSavedQuotation;
+    }
+
+    quotationSavePromise = (async function () {
+      isSavingQuote = true;
+
+      try {
+        if (
+          typeof supabaseClient === 'undefined' ||
+          !supabaseClient
+        ) {
+          throw new Error('Supabase client is not available.');
+        }
+
+        const { data, error } = await supabaseClient.rpc(
+          'create_or_get_quotation',
+          {
+            p_request_key: quotationRequestKey,
+            p_customer_name:
+              q.customerName || q.companyName || 'Website Customer',
+            p_phone: q.phone,
+            p_email: q.email,
+            p_company_name: q.companyName || null,
+            p_services: [q.serviceTitle],
+            p_standard_total: q.standardTotal,
+            p_final_total: q.finalTotal,
+            p_discount_amount: q.discountAmount || 0,
+            p_offer_code: q.agentOffer ? q.agentOffer.code : null,
+            p_status: 'generated'
+          }
+        );
+
+        if (error) {
+          throw error;
+        }
+
+        const saved =
+          Array.isArray(data) ? data[0] : data;
+
+        if (!saved || !saved.quote_number) {
+          throw new Error(
+            'Supabase did not return an official quotation reference.'
+          );
+        }
+
+        activeSavedQuotation = saved;
+        activeSavedSnapshot = currentSnapshot;
+        setOfficialQuoteReference(saved.quote_number);
+
+        console.log(
+          saved.created_new
+            ? 'KLOUDEP: New quotation registered.'
+            : 'KLOUDEP: Existing quotation reused idempotently.',
+          saved
+        );
+
+        return saved;
+
+      } catch (error) {
+        console.error(
+          'KLOUDEP quotation registration failed:',
+          error
+        );
+
+        alert(
+          'The quotation could not be registered in the KLOUDEP database.\n\n' +
+          'No PDF or WhatsApp quotation will be issued until registration succeeds.\n\n' +
+          'Database message: ' +
+          (error.message || 'Unknown database error')
+        );
+
+        return null;
+
+      } finally {
+        isSavingQuote = false;
+        quotationSavePromise = null;
+      }
+    })();
+
+    return quotationSavePromise;
+  }
+
+  async function prepareAndPrintQuote() {
     updateQuotation();
 
-    // Allow the newly assigned reference to render before
-    // the browser opens its print / Save PDF dialog.
+    const savedQuotation =
+      await ensureQuotationSaved();
+
+    if (!savedQuotation) {
+      console.error(
+        'KLOUDEP: PDF cancelled because database registration failed or the issued quotation was changed.'
+      );
+      return;
+    }
+
+    updateQuotation();
+
     requestAnimationFrame(function () {
       window.print();
     });
@@ -1322,145 +1443,6 @@
   // SAVE QUOTATION TO SUPABASE
   // ============================================================
 
-  async function saveQuotationToSupabase() {
-
-    if (isSavingQuote) {
-      return null;
-    }
-
-    isSavingQuote = true;
-
-    try {
-
-      if (
-        typeof supabaseClient === 'undefined' ||
-        !supabaseClient
-      ) {
-        throw new Error(
-          'Supabase client is not available.'
-        );
-      }
-
-      const q = getQuotationData();
-
-      /*
-        IMPORTANT:
-        These fields match the columns already confirmed
-        in your public.quotes table:
-
-        quote_number
-        customer_name
-        phone
-        email
-        company_name
-        services
-        standard_total
-        final_total
-        status
-      */
-
-      const quoteRecord = {
-
-        quote_number:
-          q.quoteNumber,
-
-        customer_name:
-          q.customerName ||
-          q.companyName ||
-          'Website Customer',
-
-        phone:
-          q.phone,
-
-        email:
-          q.email,
-
-        company_name:
-          q.companyName || null,
-
-        services:
-          [q.serviceTitle],
-
-        standard_total:
-          q.standardTotal,
-
-        final_total:
-          q.finalTotal,
-
-        discount_amount:
-          q.discountAmount || 0,
-
-        offer_code:
-          q.agentOffer ? q.agentOffer.code : null,
-
-        agent_name:
-          q.agentOffer ? q.agentOffer.agentName : null,
-
-        status:
-          'generated'
-      };
-
-      console.log(
-        'KLOUDEP: Attempting database insert:',
-        quoteRecord
-      );
-
-      const { data, error } =
-        await supabaseClient
-          .from('quotes')
-          .insert([quoteRecord])
-          .select();
-
-      if (error) {
-
-        console.error(
-          'KLOUDEP Supabase insert error:',
-          error
-        );
-
-        throw error;
-      }
-
-      console.log(
-        'KLOUDEP: Quotation successfully registered:',
-        data
-      );
-
-      if (q.agentOffer && data && data[0] && data[0].id) {
-        const { data: redemptionResult, error: redemptionError } =
-          await supabaseClient.rpc('record_offer_code_redemption', {
-            p_quote_id: data[0].id,
-            p_offer_code: q.agentOffer.code
-          });
-        if (redemptionError) throw redemptionError;
-        console.log('KLOUDEP: Agent-code redemption:', redemptionResult);
-      }
-
-      return data;
-
-    } catch (error) {
-
-      console.error(
-        'KLOUDEP quotation registration failed:',
-        error
-      );
-
-      alert(
-        'The quotation could not be registered in the KLOUDEP database.\n\n' +
-        'WhatsApp will not open until the quotation is successfully registered.\n\n' +
-        'Database message: ' +
-        (error.message || 'Unknown database error')
-      );
-
-      return null;
-
-    } finally {
-
-      isSavingQuote = false;
-    }
-  }
-
-
   // ============================================================
   // WHATSAPP LOCK-IN
   // ============================================================
@@ -1485,27 +1467,22 @@
       return;
     }
 
-    ensureQuoteReference();
     updateQuotation();
 
-    const q = getQuotationData();
-
-    /*
-      CRITICAL:
-      Database registration happens BEFORE WhatsApp opens.
-    */
-
     const savedQuotation =
-      await saveQuotationToSupabase();
+      await ensureQuotationSaved();
 
     if (!savedQuotation) {
 
       console.error(
-        'KLOUDEP: WhatsApp cancelled because database registration failed.'
+        'KLOUDEP: WhatsApp cancelled because database registration failed or the issued quotation was changed.'
       );
 
       return;
     }
+
+    updateQuotation();
+    const q = getQuotationData();
 
     const governmentFeeServices = [
       'company-startup','company-startup-code',
