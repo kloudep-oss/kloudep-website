@@ -339,41 +339,51 @@
     }
 
     @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm;
+      }
+
       html, body {
         margin: 0 !important;
         padding: 0 !important;
-        background: #fff !important;
         width: 100% !important;
         height: auto !important;
+        min-height: 0 !important;
         overflow: visible !important;
+        background: #fff !important;
       }
 
       body {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: exact !important;
       }
 
-      /* Keep ancestors rendered so the quotation itself cannot disappear. */
-      .topbar,
-      .form-panel,
+      /* Print only the official quotation. */
+      header,
+      .engine-title,
+      .quote-progress,
+      .config-panel,
       .preview-label,
-      .btn-action-group,
+      .quote-actions,
       .quote-success {
         display: none !important;
       }
 
-      .page-shell,
+      body > .container,
       .quote-workspace,
-      .quote-preview-wrap {
+      .preview-wrap {
         display: block !important;
+        position: static !important;
         width: 100% !important;
         max-width: none !important;
-        min-height: 0 !important;
+        min-width: 0 !important;
         height: auto !important;
+        min-height: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
-        background: #fff !important;
         overflow: visible !important;
+        background: #fff !important;
       }
 
       .quote-sheet {
@@ -382,31 +392,39 @@
         visibility: visible !important;
         width: 100% !important;
         max-width: none !important;
-        min-height: 0 !important;
+        min-width: 0 !important;
         height: auto !important;
+        min-height: 0 !important;
         margin: 0 !important;
-        padding: 8mm !important;
+        padding: 6mm !important;
         box-sizing: border-box !important;
         background: #fff !important;
-        box-shadow: none !important;
+        color: #1e293b !important;
+        border: 0 !important;
         border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
         overflow: visible !important;
-        page-break-after: avoid !important;
-        break-after: avoid-page !important;
+        break-inside: avoid-page !important;
+        page-break-inside: avoid !important;
       }
 
-      .quote-sheet,
-      .quote-sheet * {
-        visibility: visible !important;
+      .quote-sheet:hover {
+        transform: none !important;
+        box-shadow: none !important;
       }
 
       .sheet-header,
-      .sheet-meta,
-      .quote-table,
+      .sheet-meta-grid,
+      .table-items,
       .calc-totals,
       .sheet-footer {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
+      }
+
+      .quote-sheet img {
+        max-width: 100% !important;
       }
     }
 
