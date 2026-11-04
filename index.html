@@ -85,6 +85,44 @@ footer{padding:70px 0 34px;border-top:1px solid var(--line);background:#030711}.
 @media(max-width:620px){.container{width:min(100% - 28px,var(--max))}.hero h1{font-size:clamp(46px,15vw,68px)}.section{padding:78px 0}.grid3,.grid2,.need-grid,.footer{grid-template-columns:1fr}.need-shell,.contact{padding:26px}.actions .btn{width:100%}.trust-grid{grid-template-columns:1fr}.brand small{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
+
+<style>
+/* KLOUDEP homepage refinement — header, hero actions, capability rail */
+header .nav{min-height:86px}
+header .brand img{width:48px;height:48px}
+header .brand{gap:14px}
+header .brand span{font-size:17px}
+header .brand small{font-size:9px;letter-spacing:.18em}
+header .links{gap:29px}
+header .links>a:not(.btn){font-size:14px;font-weight:700}
+header .links .btn.primary{min-height:46px;padding-inline:22px}
+
+.hero .actions .btn{min-width:150px}
+.hero .actions .btn.primary{min-width:164px}
+
+.quick a{position:relative;padding-right:42px;overflow:hidden}
+.quick a:after{content:"";position:absolute;right:16px;top:50%;width:7px;height:7px;border-top:1.5px solid #8eeaff;border-right:1.5px solid #8eeaff;transform:translateY(-50%) rotate(45deg);transition:transform .25s var(--ease)}
+.quick a:hover:after{transform:translate(4px,-50%) rotate(45deg)}
+.quick a:hover{box-shadow:inset 0 0 30px rgba(34,211,238,.045)}
+
+.trust{padding:18px 0}
+.trust-grid{min-height:auto;gap:12px}
+.capability{display:flex!important;align-items:center!important;justify-content:center;gap:10px;padding:13px 15px;border:1px solid transparent;border-radius:16px;transition:.25s var(--ease)}
+.capability:hover{background:rgba(255,255,255,.04);border-color:var(--line);transform:translateY(-2px)}
+.capability-icon{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(34,211,238,.20);border-radius:9px;color:#7de8f8;background:rgba(34,211,238,.055);font-size:13px;flex:0 0 auto}
+
+@media(max-width:1050px){
+ header .links{gap:18px}
+ header .links>a:not(.btn){font-size:13px}
+}
+@media(max-width:900px){
+ header .nav{min-height:78px}
+ header .brand img{width:44px;height:44px}
+ .links{inset:78px 0 0}
+ .capability{justify-content:flex-start}
+}
+</style>
+
 </head>
 
 
@@ -133,35 +171,11 @@ footer{padding:70px 0 34px;border-top:1px solid var(--line);background:#030711}.
         aria-label="Main navigation"
       >
         <a href="index.html#about">About</a>
-
-        <a href="index.html#solutions">Solutions</a>
-
-        <a href="software-development.html">
-          Software
-        </a>
-
-        <a href="crm-onboarding.html">
-          CRM
-        </a>
-
-        <a href="managed-it.html">
-          Managed IT
-        </a>
-
-        <a href="index.html#locations">
-          Locations
-        </a>
-
-        <a href="index.html#contact">
-          Contact
-        </a>
-
-        <a
-          class="btn primary"
-          href="quotation.html"
-        >
-          Generate Quotation
-        </a>
+        <a href="index.html#solutions">Services</a>
+        <a href="business-services.html">Business Compliance</a>
+        <a href="managed-it.html">ICT Solutions</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="btn primary" href="quotation.html">Generate Quotation</a>
       </nav>
 
     </div>
@@ -206,28 +220,8 @@ footer{padding:70px 0 34px;border-top:1px solid var(--line);background:#030711}.
 
           <!-- Hero Actions -->
           <div class="actions">
-
-            <a
-              class="btn primary"
-              href="#solutions"
-            >
-              Explore KLOUDEP
-            </a>
-
-            <a
-              class="btn"
-              href="quotation.html"
-            >
-              Generate Quotation
-            </a>
-
-            <a
-              class="btn"
-              href="#about"
-            >
-              About KLOUDEP
-            </a>
-
+            <a class="btn primary" href="#solutions">Explore KLOUDEP</a>
+            <a class="btn" href="quotation.html">Generate Quotation</a>
           </div>
 
         </div>
@@ -238,11 +232,11 @@ footer{padding:70px 0 34px;border-top:1px solid var(--line);background:#030711}.
           <div class="eyebrow">KLOUDEP Advantage</div>
           <h3>One partner. Multiple business capabilities.</h3>
           <div class="quick">
-            <a href="#business-needs">Find what your business needs →</a>
-            <a href="software-development.html">Software &amp; digital systems →</a>
-            <a href="managed-it.html">ICT infrastructure &amp; managed IT →</a>
-            <a href="business-services.html">Business compliance &amp; support →</a>
-            <a href="quotation.html">Generate a quotation →</a>
+            <a href="#business-needs">Find what your business needs</a>
+            <a href="software-development.html">Software &amp; digital systems</a>
+            <a href="managed-it.html">ICT infrastructure &amp; managed IT</a>
+            <a href="business-services.html">Business compliance &amp; support</a>
+            <a href="quotation.html">Generate a quotation</a>
           </div>
         </aside>
 
@@ -260,25 +254,11 @@ footer{padding:70px 0 34px;border-top:1px solid var(--line);background:#030711}.
     >
 
       <div class="container trust-grid">
-
-        <a href="software-development.html">
-          Software &amp; CRM
-        </a>
-
-        <a href="managed-it.html">
-          Servers &amp; Networks
-        </a>
-
-        <a href="#business-services">
-          Business Services
-        </a>
-
-        <a href="quotation.html">
-          ICT Procurement
-        </a>
-
+        <a class="capability" href="software-development.html"><span class="capability-icon">⌘</span><span>Software &amp; CRM</span></a>
+        <a class="capability" href="managed-it.html"><span class="capability-icon">◇</span><span>Servers &amp; Networks</span></a>
+        <a class="capability" href="business-services.html"><span class="capability-icon">✓</span><span>Business Services</span></a>
+        <a class="capability" href="quotation.html"><span class="capability-icon">↗</span><span>ICT Procurement</span></a>
       </div>
-
     </section>
 
 
