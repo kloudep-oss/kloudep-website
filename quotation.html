@@ -1004,7 +1004,14 @@
       activeAgentOffer={code:r.offer_code,agentName:r.agent_name,agentId:r.agent_id,offerPrice:Number(r.offer_price),serviceCode,dbServiceCode};
       status.textContent='Applied';status.classList.add('valid');
       feedback.textContent='Agent code accepted • '+r.agent_name+' • authorised offer pricing applied.';
-      feedback.className='agent-feedback ok';updateQuotation();
+      feedback.className='agent-feedback ok';
+      try {
+        updateQuotation();
+      } catch (uiError) {
+        console.error('KLOUDEP agent-offer display failed:',uiError);
+        feedback.textContent='Agent code accepted, but the offer display could not refresh. Please reload and try again.';
+        feedback.className='agent-feedback error';
+      }
     }catch(error){
       console.error('KLOUDEP agent-code validation failed:',error);
       resetAgentOffer('We could not validate this code right now. Please try again.');feedback.classList.add('error');updateQuotation();
@@ -1018,9 +1025,9 @@
       summary.style.display='none';
       return;
     }
-    document.getElementById('agentStandardFee').textContent=formatZAR(q.standardTotal);
-    document.getElementById('agentOfferFee').textContent=formatZAR(q.subtotal);
-    document.getElementById('agentSaving').textContent=formatZAR(q.discountAmount);
+    document.getElementById('agentStandardFee').textContent=formatMoney(q.standardTotal);
+    document.getElementById('agentOfferFee').textContent=formatMoney(q.subtotal);
+    document.getElementById('agentSaving').textContent=formatMoney(q.discountAmount);
     summary.style.display='grid';
   }
 
@@ -1479,14 +1486,25 @@
       'annual-bo','annual-bo-code'
     ];
 
+    const hasAgentOffer = !!q.agentOffer;
+
+    const whatsappServiceTitle =
+      hasAgentOffer
+        ? `${q.serviceTitle.split(' — ')[0]} — Authorised Agent Offer`
+        : q.serviceTitle;
+
     const governmentFeeNote =
       governmentFeeServices.includes(q.serviceCode)
-        ? ` Service fee ${formatMoney(q.subtotal)} + CIPC/government fees.`
-        : '';
+        ? (hasAgentOffer
+            ? ` Standard service fee ${formatMoney(q.standardTotal)}; authorised agent offer ${formatMoney(q.subtotal)} + CIPC/government fees.`
+            : ` Service fee ${formatMoney(q.subtotal)} + CIPC/government fees.`)
+        : (hasAgentOffer
+            ? ` Standard service fee ${formatMoney(q.standardTotal)}; authorised agent offer ${formatMoney(q.subtotal)}.`
+            : '');
 
     const message =
       `Hello KLOUDEP Desk, I generated Quotation ${q.quoteNumber} ` +
-      `for ${q.companyName} regarding "${q.serviceTitle}" ` +
+      `for ${q.companyName} regarding "${whatsappServiceTitle}" ` +
       `with total investment ${formatMoney(q.finalTotal)}.` +
       governmentFeeNote + ` ` +
       `Please confirm queue allocation and dispatch requirements.`;
