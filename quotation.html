@@ -534,6 +534,115 @@
       }
     }
 
+  
+    /* ==========================================================
+       KLOUDEP PREMIUM QUOTATION EXPERIENCE
+       Visual layer only — pricing/database/WhatsApp logic retained
+       ========================================================== */
+    :root{
+      --premium-bg:#050914;
+      --premium-surface:rgba(15,23,42,.68);
+      --premium-line:rgba(255,255,255,.10);
+      --premium-cyan:#22d3ee;
+      --premium-blue:#3b82f6;
+      --premium-violet:#8b5cf6;
+      --premium-muted:#a8b3c7;
+      --premium-radius:24px;
+      --premium-shadow:0 28px 90px rgba(0,0,0,.34);
+      --premium-ease:cubic-bezier(.2,.8,.2,1);
+    }
+    body{
+      background:
+        radial-gradient(850px 520px at 10% -5%,rgba(34,211,238,.10),transparent 62%),
+        radial-gradient(850px 520px at 92% 4%,rgba(139,92,246,.11),transparent 60%),
+        var(--premium-bg);
+    }
+    header{padding:0;background:rgba(5,9,20,.74);border-bottom:1px solid var(--premium-line)}
+    .nav-wrap{min-height:82px}
+    .logo-box img{height:46px;background:transparent;padding:0}
+    .logo-txt{font-size:1.08rem;letter-spacing:.05em}
+    .logo-txt span{margin-top:5px;font-size:.56rem;color:var(--premium-muted);letter-spacing:.14em}
+    .back-btn{padding:10px 14px;border:1px solid var(--premium-line);border-radius:999px;background:rgba(255,255,255,.035);transition:.25s var(--premium-ease)}
+    .back-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.07)}
+
+    .engine-title{text-align:left;max-width:820px;margin:62px 0 28px}
+    .engine-kicker{display:inline-flex;align-items:center;gap:9px;color:#8eeaff;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .engine-kicker:before{content:"";width:27px;height:1px;background:linear-gradient(90deg,var(--premium-cyan),var(--premium-violet))}
+    .engine-title h1{font-size:clamp(2.5rem,5vw,4.6rem);line-height:.98;letter-spacing:-.055em;margin:17px 0 20px;max-width:850px}
+    .engine-title h1 span{background:linear-gradient(100deg,#fff 4%,#67e8f9 43%,#a78bfa 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .engine-title p{max-width:720px;line-height:1.75;color:var(--premium-muted)}
+
+    .quote-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 28px}
+    .progress-step{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--premium-line);border-radius:16px;background:rgba(255,255,255,.025);color:var(--premium-muted);font-size:.78rem;font-weight:700}
+    .progress-step b{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:rgba(255,255,255,.055);color:#dce7f5}
+    .progress-step.active{color:#fff;border-color:rgba(34,211,238,.26);background:rgba(34,211,238,.055)}
+    .progress-step.active b{background:linear-gradient(135deg,var(--premium-cyan),var(--premium-blue));color:#06111c}
+
+    .quote-workspace{grid-template-columns:minmax(0,1.02fr) minmax(420px,.98fr);gap:28px}
+    .config-panel{border-radius:var(--premium-radius);padding:30px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--premium-line);box-shadow:var(--premium-shadow);backdrop-filter:blur(16px)}
+    .panel-title{color:#eef6ff;font-size:1.05rem;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--premium-line)}
+    .panel-title i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;color:#7de8f8;background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.15)}
+    .input-group{margin-bottom:20px}
+    .input-group label{font-size:.77rem;letter-spacing:.015em;color:#b6c2d5;margin-bottom:8px}
+    .input-ctrl{min-height:50px;padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid var(--premium-line);transition:border-color .2s,box-shadow .2s,background .2s}
+    .input-ctrl:hover{background:rgba(255,255,255,.06)}
+    .input-ctrl:focus{border-color:rgba(34,211,238,.65);box-shadow:0 0 0 4px rgba(34,211,238,.08);background:rgba(255,255,255,.065)}
+    input[type="range"].input-ctrl{min-height:auto;padding:10px 0;background:transparent;border:0;box-shadow:none;accent-color:var(--premium-cyan)}
+    #lblUnits{display:inline-flex;padding:3px 8px;margin-left:5px;border-radius:999px;background:rgba(34,211,238,.08)}
+
+    .preview-wrap{position:sticky;top:104px}
+    .preview-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 10px;color:var(--premium-muted);font-size:.73rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .live-dot{display:inline-flex;align-items:center;gap:7px;color:#8eeaff;letter-spacing:.06em}
+    .live-dot:before{content:"";width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 0 5px rgba(34,211,238,.08)}
+    .quote-sheet{border-radius:20px;padding:34px;box-shadow:0 28px 90px rgba(0,0,0,.46);border:1px solid rgba(255,255,255,.16);transition:transform .3s var(--premium-ease),box-shadow .3s var(--premium-ease)}
+    .quote-sheet:hover{transform:translateY(-2px);box-shadow:0 34px 100px rgba(0,0,0,.52)}
+    .sheet-header{border-bottom:1px solid #e2e8f0}
+    .table-items th{background:#f6f8fb}
+    .total-highlight td{padding-top:12px}
+    #outGrandTotal{font-size:1.45rem}
+    #outQuoteRef{display:inline-block;padding:4px 8px;border-radius:7px;background:#f1f5f9}
+
+    .quote-actions{margin-top:14px}
+    .quote-action{border-radius:17px}
+    .quote-action-pdf{background:linear-gradient(145deg,rgba(30,41,59,.98),rgba(9,14,25,.98))}
+    .quote-action-whatsapp{background:linear-gradient(135deg,#0bbf74,#078b50)}
+
+    .quote-success{
+      position:fixed;right:22px;bottom:22px;z-index:2000;
+      display:flex;align-items:center;gap:12px;max-width:360px;
+      padding:15px 17px;border:1px solid rgba(34,211,238,.24);border-radius:17px;
+      background:rgba(8,15,29,.94);box-shadow:0 22px 70px rgba(0,0,0,.42);
+      backdrop-filter:blur(18px);opacity:0;transform:translateY(18px) scale(.98);
+      pointer-events:none;transition:.35s var(--premium-ease)
+    }
+    .quote-success.show{opacity:1;transform:none}
+    .success-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--premium-cyan),var(--premium-blue));color:#06111c}
+    .quote-success strong{display:block;font-size:.88rem}
+    .quote-success span{display:block;color:var(--premium-muted);font-size:.72rem;margin-top:2px}
+
+    @media(max-width:1000px){
+      .quote-workspace{grid-template-columns:1fr}
+      .preview-wrap{position:static}
+    }
+    @media(max-width:700px){
+      .container{padding:0 15px}
+      .nav-wrap{min-height:72px}
+      .logo-box img{height:40px}
+      .logo-txt span{display:none}
+      .back-btn{font-size:.78rem;padding:9px 11px}
+      .back-btn i{display:none}
+      .engine-title{margin:44px 0 23px}
+      .engine-title h1{font-size:clamp(2.45rem,12vw,3.7rem)}
+      .quote-progress{grid-template-columns:1fr}
+      .progress-step{padding:10px 12px}
+      .config-panel{padding:22px;border-radius:20px}
+      .quote-sheet{padding:22px;border-radius:17px}
+      .sheet-meta-grid{grid-template-columns:1fr}
+      .sheet-meta-grid>div:last-child{text-align:left!important}
+      .table-items{font-size:.78rem}
+      .quote-success{left:14px;right:14px;bottom:14px;max-width:none}
+    }
+
   </style>
 </head>
 <body>
@@ -556,8 +665,15 @@
 
   <div class="container">
     <div class="engine-title">
-      <h1>Custom Enterprise Quotation Builder</h1>
-      <p>Configure your specifications below. Generate and download your official branded PDF quotation instantly.</p>
+      <div class="engine-kicker">KLOUDEP Official Quotation Engine</div>
+      <h1>Build your quotation. <span>See the investment instantly.</span></h1>
+      <p>Select the service your organisation needs, add the client details and review the live KLOUDEP quotation before downloading or sending it to our WhatsApp desk.</p>
+    </div>
+
+    <div class="quote-progress" aria-label="Quotation process">
+      <div class="progress-step active"><b>1</b><span>Choose service</span></div>
+      <div class="progress-step"><b>2</b><span>Add client details</span></div>
+      <div class="progress-step"><b>3</b><span>Review &amp; send</span></div>
     </div>
 
     <div class="quote-workspace">
@@ -634,7 +750,8 @@
       </div>
 
       <!-- Live Printable Quotation Sheet (Right) -->
-      <div>
+      <div class="preview-wrap">
+        <div class="preview-label"><span>Live quotation preview</span><span class="live-dot">Live</span></div>
         <div class="quote-sheet" id="quoteSheet">
           
           <!-- Sheet Header with Company Logo -->
@@ -758,11 +875,34 @@
   let isSavingQuote = false;
   let activeQuoteReference = null;
 
+  function showQuoteSuccess(reference) {
+    const toast = document.getElementById('quoteSuccess');
+    const text = document.getElementById('quoteSuccessText');
+    if (!toast || !text) return;
+    text.innerText = reference + ' is ready for this quotation.';
+    toast.classList.add('show');
+    clearTimeout(window.__kloudepQuoteToast);
+    window.__kloudepQuoteToast = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 3200);
+  }
+
+  function updateProgressState() {
+    const steps = document.querySelectorAll('.progress-step');
+    if (!steps.length) return;
+    const hasService = !!document.getElementById('selService').value;
+    const hasClient = !!document.getElementById('custCompany').value.trim();
+    steps[0].classList.toggle('active', hasService);
+    steps[1].classList.toggle('active', hasClient);
+    steps[2].classList.toggle('active', hasClient);
+  }
+
   function ensureQuoteReference() {
     if (!activeQuoteReference) {
       activeQuoteReference = generateQuoteReference();
       document.getElementById('outQuoteRef').innerText =
         activeQuoteReference;
+      showQuoteSuccess(activeQuoteReference);
     }
 
     return activeQuoteReference;
@@ -898,6 +1038,7 @@
 
   function updateQuotation() {
     const q = getQuotationData();
+    updateProgressState();
 
     // Only services whose pricing genuinely depends on document/page volume
     // display the page slider. Fixed-fee/admin/retainer/hardware services hide it.
