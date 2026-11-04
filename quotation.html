@@ -1178,12 +1178,21 @@
     document.getElementById('lblUnits').innerText =
       q.units + ' ' + quantityUnit;
 
-    const printedServiceTitle = q.agentOffer
-      ? q.serviceTitle.split(' — ')[0] + ' — Authorised Agent Offer'
-      : q.serviceTitle;
+    // Printed quotation wording only.
+    // Pricing remains sourced from getQuotationData().
+    const serviceDisplayName = q.serviceTitle.split(' — ')[0].trim();
+    const governmentFeeServices = [
+      'company-startup',
+      'bo-filing',
+      'annual-bo'
+    ];
+    const hasGovernmentFees =
+      governmentFeeServices.includes(q.serviceCode);
 
     document.getElementById('outItemTitle').innerText =
-      printedServiceTitle;
+      q.agentOffer
+        ? serviceDisplayName + ' — Authorised Agent Offer'
+        : q.serviceTitle;
 
     // ----------------------------------------------------------
     // SERVICE DESCRIPTION LOGIC
@@ -1259,9 +1268,12 @@
 
     document.getElementById('outItemDesc').innerText =
       q.agentOffer
-        ? baseServiceDescription + ' Authorised agent offer applied: standard fee ' +
-          formatMoney(q.standardTotal) + ', offer ' + formatMoney(q.subtotal) +
-          ' (saving ' + formatMoney(q.discountAmount) + ').'
+        ? 'Standard service fee: ' + formatMoney(q.standardTotal) +
+          '. Authorised agent offer: ' + formatMoney(q.subtotal) +
+          '. You save: ' + formatMoney(q.discountAmount) + '.' +
+          (hasGovernmentFees
+            ? ' Official CIPC/government fees are charged separately.'
+            : '')
         : baseServiceDescription;
 
     const fixedComplianceCodes = [
