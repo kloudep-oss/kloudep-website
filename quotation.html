@@ -742,7 +742,7 @@
         </div>
 
         <div class="input-group" id="volumeGroup">
-          <label for="rangeVolume">Document Volume / Pages: <span id="lblUnits" style="color:var(--accent-cyan); font-weight:700;">60 Pages</span></label>
+          <label for="rangeVolume">Quantity / Volume: <span id="lblUnits" style="color:var(--accent-cyan); font-weight:700;">60 Pages</span></label>
           <input type="range" id="rangeVolume" min="10" max="300" value="60" class="input-ctrl" oninput="updateQuotation()" />
         </div>
 
@@ -1153,7 +1153,9 @@
       'tender',
       'cipc',
       'lease',
-      'codebase'
+      'bookkeeping',
+      'codebase',
+      'hardware'
     ];
 
     const usesPageVolume =
@@ -1171,11 +1173,17 @@
     volumeSlider.disabled =
       !usesPageVolume;
 
+    const quantityUnit = q.serviceCode === 'hardware' ? 'Units' : 'Pages';
+
     document.getElementById('lblUnits').innerText =
-      q.units + ' Pages';
+      q.units + ' ' + quantityUnit;
+
+    const printedServiceTitle = q.agentOffer
+      ? q.serviceTitle.split(' — ')[0] + ' — Authorised Agent Offer'
+      : q.serviceTitle;
 
     document.getElementById('outItemTitle').innerText =
-      q.serviceTitle;
+      printedServiceTitle;
 
     // ----------------------------------------------------------
     // SERVICE DESCRIPTION LOGIC
@@ -1245,9 +1253,16 @@
         'Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.'
     };
 
-    document.getElementById('outItemDesc').innerText =
+    const baseServiceDescription =
       serviceDescriptions[q.serviceCode] ||
       'Professional KLOUDEP business and technology service.';
+
+    document.getElementById('outItemDesc').innerText =
+      q.agentOffer
+        ? baseServiceDescription + ' Authorised agent offer applied: standard fee ' +
+          formatMoney(q.standardTotal) + ', offer ' + formatMoney(q.subtotal) +
+          ' (saving ' + formatMoney(q.discountAmount) + ').'
+        : baseServiceDescription;
 
     const fixedComplianceCodes = [
       'company-startup','company-startup-code','bo-filing','bo-filing-code',
@@ -1260,7 +1275,7 @@
       fixedComplianceCodes.includes(q.serviceCode)
         ? 'Service Fee'
         : usesPageVolume
-          ? q.units + ' Pages'
+          ? q.units + ' ' + quantityUnit
           : 'Service';
 
     document.getElementById('outItemTotal').innerText =
