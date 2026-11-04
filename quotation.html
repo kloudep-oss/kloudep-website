@@ -968,7 +968,10 @@
       phone: q.phone || null,
       email: q.email || null,
       companyName: q.companyName || null,
-      services: [q.serviceTitle],
+      services: [{
+        service_code: agentServiceMap[q.serviceCode] || q.serviceCode,
+        service_title: q.serviceTitle
+      }],
       standardTotal: Number(q.standardTotal),
       finalTotal: Number(q.finalTotal),
       discountAmount: Number(q.discountAmount || 0),
@@ -1016,7 +1019,10 @@
             p_phone: q.phone,
             p_email: q.email,
             p_company_name: q.companyName || null,
-            p_services: [q.serviceTitle],
+            p_services: [{
+              service_code: agentServiceMap[q.serviceCode] || q.serviceCode,
+              service_title: q.serviceTitle
+            }],
             p_standard_total: q.standardTotal,
             p_final_total: q.finalTotal,
             p_discount_amount: q.discountAmount || 0,
