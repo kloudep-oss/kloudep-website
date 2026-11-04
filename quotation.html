@@ -643,6 +643,20 @@
       .quote-success{left:14px;right:14px;bottom:14px;max-width:none}
     }
 
+  
+    .agent-code-box{margin:2px 0 22px;padding:17px;border:1px solid var(--premium-line);border-radius:16px;background:rgba(34,211,238,.025)}
+    .agent-code-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:12px}
+    .agent-code-head strong{display:block;color:#eef7ff;font-size:.83rem}.agent-code-head strong i{color:#67e8f9;margin-right:6px}
+    .agent-code-head span:not(.agent-status){display:block;color:var(--premium-muted);font-size:.68rem;line-height:1.5;margin-top:4px}
+    .agent-status{flex:0 0 auto;padding:5px 8px;border:1px solid var(--premium-line);border-radius:999px;color:var(--premium-muted);font-size:.62rem;font-weight:800;text-transform:uppercase}
+    .agent-status.valid{color:#6ee7b7;border-color:rgba(52,211,153,.28);background:rgba(52,211,153,.07)}
+    .agent-code-row{display:grid;grid-template-columns:1fr auto;gap:9px}.agent-code-row .input-ctrl{text-transform:uppercase;letter-spacing:.08em}
+    .agent-apply-btn{min-width:112px;border:0;border-radius:13px;padding:0 16px;background:linear-gradient(135deg,var(--premium-cyan),var(--premium-blue));color:#06111c;font-weight:850;cursor:pointer;transition:.25s var(--premium-ease)}
+    .agent-apply-btn:hover{transform:translateY(-2px)}.agent-apply-btn:disabled{opacity:.55;cursor:wait;transform:none}
+    .agent-feedback{min-height:18px;margin-top:8px;color:var(--premium-muted);font-size:.68rem}.agent-feedback.ok{color:#6ee7b7}.agent-feedback.error{color:#fca5a5}
+    .agent-offer-row td{color:#047857!important;font-weight:700}
+    @media(max-width:520px){.agent-code-head{display:block}.agent-status{display:inline-flex;margin-top:10px}.agent-code-row{grid-template-columns:1fr}.agent-apply-btn{min-height:46px}}
+
   </style>
 </head>
 <body>
@@ -692,20 +706,26 @@
             <option value="codebase" data-base="4500" data-mult="35" data-title="Codebase Architecture, API Docs & Vulnerability Dossier">Codebase Mapping & Systems Architecture</option>
             <option value="hardware" data-base="3200" data-mult="15" data-title="ICT Hardware Supply & Customs Logistics Deployment">ICT Hardware Supply & Customs Distribution</option>
             <option value="company-startup" data-base="1750" data-mult="0" data-title="Company Startup Pack — Service fee R1,750 + CIPC/government fees">Company Startup Pack — R1,750 + official fees</option>
-            <option value="company-startup-code" data-base="950" data-mult="0" data-title="Company Startup Pack — Service fee R950 + CIPC/government fees">Company Startup Pack WITH CODE — R950 + official fees</option>
             <option value="bo-filing" data-base="950" data-mult="0" data-title="BO Filing Only — Service fee R950 + CIPC/government fees">BO Filing Only — R950 + official fees</option>
-            <option value="bo-filing-code" data-base="450" data-mult="0" data-title="BO Filing Only — Service fee R450 + CIPC/government fees">BO Filing Only WITH CODE — R450 + official fees</option>
             <option value="annual-bo" data-base="1250" data-mult="0" data-title="Annual Return + BO — Service fee R1,250 + CIPC/government fees">Annual Return + BO — R1,250 + official fees</option>
-            <option value="annual-bo-code" data-base="650" data-mult="0" data-title="Annual Return + BO — Service fee R650 + CIPC/government fees">Annual Return + BO WITH CODE — R650 + official fees</option>
             <option value="employer-setup" data-base="1500" data-mult="0" data-title="Employer Setup (PAYE/UIF/SDL) — Service fee R1,500">Employer Setup (PAYE/UIF/SDL) — R1,500</option>
-            <option value="employer-setup-code" data-base="750" data-mult="0" data-title="Employer Setup (PAYE/UIF/SDL) — Service fee R750">Employer Setup WITH CODE — R750</option>
             <option value="efiling-help" data-base="750" data-mult="0" data-title="eFiling Setup/Help — Service fee R750">eFiling Setup/Help — R750</option>
-            <option value="efiling-help-code" data-base="350" data-mult="0" data-title="eFiling Setup/Help — Service fee R350">eFiling Setup/Help WITH CODE — R350</option>
             <option value="compliance-monthly" data-base="500" data-mult="0" data-title="Monthly Compliance Retainer — Service fee R500 per month">Monthly Compliance Retainer — R500/month</option>
-            <option value="compliance-monthly-code" data-base="250" data-mult="0" data-title="Monthly Compliance Retainer — Service fee R250 per month">Monthly Compliance Retainer WITH CODE — R250/month</option>
             <option value="compliance-annual" data-base="3000" data-mult="0" data-title="Annual Compliance Retainer — Service fee R3,000 per year">Annual Compliance Retainer — R3,000/year</option>
-            <option value="compliance-annual-code" data-base="1500" data-mult="0" data-title="Annual Compliance Retainer — Service fee R1,500 per year">Annual Compliance Retainer WITH CODE — R1,500/year</option>
           </select>
+        </div>
+
+        <div class="agent-code-box">
+          <div class="agent-code-head">
+            <div><strong><i class="fa-solid fa-user-tag"></i> Agent Code</strong>
+              <span>Optional — use a valid KLOUDEP agent code to unlock authorised offer pricing.</span></div>
+            <span class="agent-status" id="agentStatus">Not applied</span>
+          </div>
+          <div class="agent-code-row">
+            <input type="text" id="agentCode" class="input-ctrl" placeholder="Enter agent code" autocomplete="off" spellcheck="false">
+            <button type="button" class="agent-apply-btn" id="applyAgentCode" onclick="applyAgentCode()">Apply Code</button>
+          </div>
+          <div class="agent-feedback" id="agentFeedback" aria-live="polite"></div>
         </div>
 
         <div class="input-group" id="volumeGroup">
@@ -874,6 +894,14 @@
 
   let isSavingQuote = false;
   let activeQuoteReference = null;
+  let activeAgentOffer = null;
+  let agentValidationInFlight = false;
+  const agentServiceMap = {
+    'company-startup':'STARTUP','bo-filing':'BO','annual-bo':'ANNUAL-BO',
+    'employer-setup':'EMPLOYER','efiling-help':'EFILING',
+    'compliance-monthly':'RETAINER-MONTHLY','compliance-annual':'RETAINER-YEARLY'
+  };
+
 
   function showQuoteSuccess(reference) {
     const toast = document.getElementById('quoteSuccess');
@@ -933,6 +961,41 @@
     });
   }
 
+  function resetAgentOffer(message) {
+    activeAgentOffer = null;
+    const s=document.getElementById('agentStatus'), f=document.getElementById('agentFeedback');
+    if(s){s.textContent='Not applied';s.classList.remove('valid')}
+    if(f){f.textContent=message||'';f.className='agent-feedback'}
+  }
+
+  async function applyAgentCode() {
+    if(agentValidationInFlight) return;
+    const input=document.getElementById('agentCode'), button=document.getElementById('applyAgentCode');
+    const feedback=document.getElementById('agentFeedback'), status=document.getElementById('agentStatus');
+    const serviceCode=document.getElementById('selService').value, dbServiceCode=agentServiceMap[serviceCode];
+    const code=(input.value||'').trim().toUpperCase();
+    if(!code){resetAgentOffer('Enter an agent code first.');feedback.classList.add('error');return}
+    if(!dbServiceCode){resetAgentOffer('Agent offer pricing is not available for this service.');feedback.classList.add('error');return}
+    agentValidationInFlight=true;button.disabled=true;button.textContent='Checking…';
+    feedback.textContent='Validating securely…';feedback.className='agent-feedback';
+    try{
+      const {data,error}=await supabaseClient.rpc('get_agent_offer',{p_code:code,p_service_code:dbServiceCode});
+      if(error) throw error;
+      const r=Array.isArray(data)?data[0]:data;
+      if(!r||!r.valid||r.offer_price==null){
+        resetAgentOffer((r&&r.message)||'This agent code is not valid for the selected service.');
+        feedback.classList.add('error');updateQuotation();return;
+      }
+      activeAgentOffer={code:r.offer_code,agentName:r.agent_name,agentId:r.agent_id,offerPrice:Number(r.offer_price),serviceCode,dbServiceCode};
+      status.textContent='Applied';status.classList.add('valid');
+      feedback.textContent='Agent code accepted • '+r.agent_name+' • authorised offer pricing applied.';
+      feedback.className='agent-feedback ok';updateQuotation();
+    }catch(error){
+      console.error('KLOUDEP agent-code validation failed:',error);
+      resetAgentOffer('We could not validate this code right now. Please try again.');feedback.classList.add('error');updateQuotation();
+    }finally{agentValidationInFlight=false;button.disabled=false;button.textContent='Apply Code'}
+  }
+
   function getQuotationData() {
     const serviceSelect = document.getElementById('selService');
     const serviceOption =
@@ -974,10 +1037,12 @@
        'compliance-monthly-code','compliance-annual','compliance-annual-code']
       .includes(serviceCode);
 
-    const subtotal =
-      isFixedComplianceService
-        ? Math.round(standardTotal)
-        : Math.round(standardTotal * slaMultiplier);
+    const normalSubtotal =
+      isFixedComplianceService ? Math.round(standardTotal) : Math.round(standardTotal * slaMultiplier);
+    const hasAgentOffer = activeAgentOffer && activeAgentOffer.serviceCode === serviceCode &&
+      Number.isFinite(activeAgentOffer.offerPrice);
+    const subtotal = hasAgentOffer ? Math.round(activeAgentOffer.offerPrice) : normalSubtotal;
+    const discountAmount = hasAgentOffer ? Math.max(0, Number((normalSubtotal - subtotal).toFixed(2))) : 0;
 
     const vat =
       Number((subtotal * 0.15).toFixed(2));
@@ -1017,8 +1082,10 @@
       units,
       slaMultiplier,
       slaDescription,
-      standardTotal,
+      standardTotal: normalSubtotal,
       subtotal,
+      discountAmount,
+      agentOffer: hasAgentOffer ? activeAgentOffer : null,
       vat,
       finalTotal,
       companyName,
@@ -1037,6 +1104,10 @@
   // ============================================================
 
   function updateQuotation() {
+    const selectedService=document.getElementById('selService').value;
+    if(activeAgentOffer && activeAgentOffer.serviceCode!==selectedService){
+      resetAgentOffer('Service changed — apply the agent code again for this service.');
+    }
     const q = getQuotationData();
     updateProgressState();
 
@@ -1253,6 +1324,15 @@
         final_total:
           q.finalTotal,
 
+        discount_amount:
+          q.discountAmount || 0,
+
+        offer_code:
+          q.agentOffer ? q.agentOffer.code : null,
+
+        agent_name:
+          q.agentOffer ? q.agentOffer.agentName : null,
+
         status:
           'generated'
       };
@@ -1282,6 +1362,16 @@
         'KLOUDEP: Quotation successfully registered:',
         data
       );
+
+      if (q.agentOffer && data && data[0] && data[0].id) {
+        const { data: redemptionResult, error: redemptionError } =
+          await supabaseClient.rpc('record_offer_code_redemption', {
+            p_quote_id: data[0].id,
+            p_offer_code: q.agentOffer.code
+          });
+        if (redemptionError) throw redemptionError;
+        console.log('KLOUDEP: Agent-code redemption:', redemptionResult);
+      }
 
       return data;
 
@@ -1442,6 +1532,20 @@
       }
     }
 
+
+    const agentCodeInput=document.getElementById('agentCode');
+    if(agentCodeInput){
+      agentCodeInput.addEventListener('input',function(){
+        this.value=this.value.toUpperCase();
+        if(activeAgentOffer && this.value.trim()!==activeAgentOffer.code){
+          resetAgentOffer('Code changed — press Apply Code to validate again.');
+          updateQuotation();
+        }
+      });
+      agentCodeInput.addEventListener('keydown',function(event){
+        if(event.key==='Enter'){event.preventDefault();applyAgentCode();}
+      });
+    }
 
     // Initial quotation calculation
     updateQuotation();
