@@ -5,18 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>KLOUDEP Business Services | Compliance, Bookkeeping & Tender Support South Africa</title>
-
-  <meta
-    name="description"
-    content="KLOUDEP provides business support services in South Africa including tender and RFP support, CIPC administrative support, business document analysis, bookkeeping data cleanup, reconciliations and reporting."
-  >
-
+  <meta name="description" content="KLOUDEP provides business support services in South Africa including company compliance support, Beneficial Ownership and annual return administration, employer and eFiling setup assistance, tender and RFP support, bookkeeping data cleanup, reconciliations and reporting.">
   <meta name="robots" content="index, follow">
-
-  <link
-    rel="canonical"
-    href="https://kloudep.co.za/business-services.html"
-  >
+  <link rel="canonical" href="https://kloudep.co.za/business-services.html">
 
   <link rel="icon" href="images/logo.png">
   <link rel="stylesheet" href="css/style.css">
@@ -24,186 +15,801 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KLOUDEP">
-  <meta property="og:title" content="KLOUDEP Business Services | South Africa">
-  <meta
-    property="og:description"
-    content="Business support, tender and RFP assistance, CIPC administrative support, bookkeeping data cleanup, reconciliations and reporting."
-  >
+  <meta property="og:title" content="KLOUDEP Business Services | Compliance, Bookkeeping & Tender Support South Africa">
+  <meta property="og:description" content="Connected business support for company compliance, tender and RFP preparation, business records, bookkeeping data and operational administration in South Africa.">
   <meta property="og:url" content="https://kloudep.co.za/business-services.html">
   <meta property="og:image" content="https://kloudep.co.za/images/logo.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KLOUDEP Business Services | South Africa">
+  <meta name="twitter:description" content="Company compliance, tender and RFP support, bookkeeping data organisation and connected business operations support.">
+  <meta name="twitter:image" content="https://kloudep.co.za/images/logo.png">
+
+  <!-- Organisation structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    "@id": "https://kloudep.co.za/#organization",
+    "name": "KLOUDEP (Pty) Ltd",
+    "alternateName": "KLOUDEP",
+    "legalName": "KLOUD EP (PTY) LTD",
+    "identifier": "2021/387994/07",
+    "url": "https://kloudep.co.za/",
+    "logo": "https://kloudep.co.za/images/logo.png",
+    "telephone": "+27659051136",
+    "email": "info@kloudep.co.za",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+27659051136",
+      "email": "info@kloudep.co.za",
+      "contactType": "customer service",
+      "areaServed": "ZA",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#050914;
+      --surface:rgba(15,23,42,.68);
+      --surface-strong:rgba(15,23,42,.92);
+      --text:#f8fafc;
+      --muted:#a8b3c7;
+      --line:rgba(255,255,255,.10);
+      --cyan:#22d3ee;
+      --blue:#3b82f6;
+      --violet:#8b5cf6;
+      --shadow:0 24px 80px rgba(0,0,0,.32);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 12% 12%,rgba(34,211,238,.10),transparent 28%),
+        radial-gradient(circle at 88% 8%,rgba(139,92,246,.12),transparent 28%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid var(--line);
+      background:rgba(5,9,20,.76);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:11px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+    .brand img{width:48px;height:48px;object-fit:contain}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:7px;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:10px 11px;
+      border-radius:12px;
+      font-size:.94rem;
+      transition:.2s ease;
+    }
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--text);background:rgba(255,255,255,.06)}
+    .nav-links .nav-cta{
+      color:#fff;
+      border:1px solid rgba(34,211,238,.35);
+      background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(59,130,246,.18),rgba(139,92,246,.16));
+    }
+    .menu{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+
+    .hero{padding:96px 0 72px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+      gap:48px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#b9f6ff;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      font-size:clamp(2.9rem,6vw,5.7rem);
+      line-height:.96;
+      letter-spacing:-.055em;
+      margin-bottom:24px;
+      max-width:950px;
+    }
+    .gradient{
+      background:linear-gradient(100deg,var(--cyan),#7dd3fc 35%,#a78bfa 72%,#e879f9);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lead{
+      max-width:760px;
+      color:var(--muted);
+      font-size:clamp(1.05rem,1.5vw,1.22rem);
+      line-height:1.75;
+    }
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      color:#fff;
+      text-decoration:none;
+      font-weight:750;
+      transition:.2s ease;
+    }
+    .btn:hover,.btn:focus-visible{transform:translateY(-1px);border-color:rgba(34,211,238,.42)}
+    .btn.primary{
+      border-color:rgba(34,211,238,.34);
+      background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(59,130,246,.25),rgba(139,92,246,.22));
+      box-shadow:0 12px 38px rgba(59,130,246,.12);
+    }
+    .btn.small{min-height:42px;padding:0 14px;font-size:.9rem}
+
+    .hero-panel,.story-shell,.trust-shell,.cta-shell{
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+      box-shadow:var(--shadow);
+    }
+    .hero-panel{padding:28px}
+    .hero-panel h2{font-size:1.35rem;letter-spacing:-.02em;margin-bottom:10px}
+    .hero-panel p{color:var(--muted);line-height:1.65}
+    .journey{display:grid;gap:10px;margin-top:22px}
+    .journey-item{
+      display:grid;
+      grid-template-columns:38px 1fr;
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(5,9,20,.45);
+    }
+    .journey-num{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      color:#d9fbff;font-weight:800;
+      background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(139,92,246,.18));
+    }
+    .journey-item strong{display:block;font-size:.95rem}
+    .journey-item span{display:block;color:var(--muted);font-size:.82rem;margin-top:2px}
+
+    .cap-strip{border-block:1px solid var(--line);background:rgba(255,255,255,.018)}
+    .cap-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .capability{
+      padding:20px 18px;
+      text-decoration:none;
+      text-align:center;
+      color:#dce6f5;
+      border-right:1px solid var(--line);
+    }
+    .capability:last-child{border-right:0}
+    .capability:hover{background:rgba(255,255,255,.035)}
+
+    .section{padding:84px 0}
+    .section.alt{background:linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,.008))}
+    .head{max-width:780px;margin-bottom:34px}
+    .head h2{
+      font-size:clamp(2rem,4vw,3.45rem);
+      line-height:1.05;
+      letter-spacing:-.045em;
+      margin-bottom:16px;
+    }
+    .head p{color:var(--muted);line-height:1.75;font-size:1.04rem}
+
+    .service-group{margin-top:52px}
+    .group-heading{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      align-items:end;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:20px;
+    }
+    .group-heading h3{font-size:1.55rem;margin-bottom:6px}
+    .group-heading p{color:var(--muted);margin:0;max-width:700px;line-height:1.6}
+
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service-card{
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+      padding:23px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(15,23,42,.58);
+      transition:.2s ease;
+    }
+    .service-card:hover{transform:translateY(-2px);border-color:rgba(34,211,238,.26)}
+    .service-card .kicker{color:#9beef9;font-size:.73rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px}
+    .service-card h3{font-size:1.18rem;margin-bottom:10px}
+    .service-card p{color:var(--muted);line-height:1.65;margin-bottom:16px}
+    .service-card .note{font-size:.82rem;color:#c6d1df;padding-top:13px;border-top:1px solid var(--line);margin-top:auto}
+    .service-card .card-action{margin-top:18px}
+
+    .story-shell{padding:34px}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .story-copy p{color:var(--muted);line-height:1.75}
+    .flow{display:grid;gap:11px}
+    .flow-row{
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:13px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(5,9,20,.42);
+    }
+    .flow-icon{
+      width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(139,92,246,.17));
+      font-weight:800;
+    }
+    .flow-row strong{display:block;margin-bottom:4px}
+    .flow-row span{color:var(--muted);font-size:.9rem;line-height:1.5}
+
+    .trust-shell{padding:34px}
+    .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+    .proof{
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:17px;
+      background:rgba(5,9,20,.42);
+    }
+    .proof strong{display:block;margin-bottom:6px}
+    .proof span{color:var(--muted);font-size:.88rem;line-height:1.5}
+
+    .cta-shell{
+      padding:42px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:28px;
+      align-items:center;
+      background:
+        radial-gradient(circle at 85% 20%,rgba(139,92,246,.15),transparent 34%),
+        radial-gradient(circle at 10% 80%,rgba(34,211,238,.12),transparent 35%),
+        rgba(15,23,42,.64);
+    }
+    .cta-shell h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em;margin-bottom:10px}
+    .cta-shell p{color:var(--muted);line-height:1.65;margin-bottom:0;max-width:700px}
+
+    footer{padding:42px 0;border-top:1px solid var(--line);color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    footer strong{color:#fff}
+    footer a{text-decoration:none;color:#cbd5e1}
+    footer a:hover{text-decoration:underline}
+    .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:flex-end}
+
+    @media(max-width:900px){
+      .container{width:min(100% - 28px,1180px)}
+      .menu{display:inline-grid;place-items:center}
+      .nav-links{
+        display:none;
+        position:absolute;
+        left:14px;right:14px;top:72px;
+        padding:12px;
+        flex-direction:column;
+        align-items:stretch;
+        border:1px solid var(--line);
+        border-radius:18px;
+        background:rgba(5,9,20,.97);
+        box-shadow:var(--shadow);
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:12px}
+      .brand img{width:44px;height:44px}
+      .hero{padding:72px 0 56px}
+      .hero-grid,.story-grid,.cta-shell,.footer-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:repeat(2,1fr)}
+      .proof-grid,.cap-grid{grid-template-columns:repeat(2,1fr)}
+      .capability:nth-child(2){border-right:0}
+      .capability:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .footer-links{justify-content:flex-start}
+    }
+
+    @media(max-width:620px){
+      h1{font-size:clamp(2.55rem,14vw,4.2rem)}
+      .section{padding:66px 0}
+      .service-grid,.proof-grid{grid-template-columns:1fr}
+      .group-heading{align-items:start;flex-direction:column}
+      .hero-panel,.story-shell,.trust-shell,.cta-shell{padding:24px}
+      .actions .btn{width:100%}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition:none!important;animation:none!important}
+    }
+  </style>
 </head>
 
 <body>
 
+  <!-- =========================================================
+       PREMIUM SITE NAVIGATION
+  ========================================================== -->
   <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="brand">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="KLOUDEP home">
         <img src="images/logo.png" alt="KLOUDEP logo">
         <span>KLOUDEP</span>
       </a>
+
+      <button class="menu" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation">
+        ☰
+      </button>
+
+      <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#solutions">Services</a>
+        <a href="business-services.html" aria-current="page">Business Compliance</a>
+        <a href="managed-it.html">ICT Solutions</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="nav-cta" href="quotation.html">Generate Quotation</a>
+      </nav>
     </div>
   </header>
 
   <main>
 
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
     <section class="hero">
-      <div class="container">
+      <div class="container hero-grid">
 
-        <div class="eyebrow">
-          South African Business Support Services
+        <div>
+          <div class="eyebrow">Business Compliance • Records • Tender Support</div>
+
+          <h1>
+            Business Compliance.
+            <br>
+            <span class="gradient">Connected to Operations.</span>
+          </h1>
+
+          <p class="lead">
+            KLOUDEP supports South African organisations across the business work that sits behind day-to-day operations — from company startup and compliance administration to tender preparation, business records, bookkeeping data and reporting.
+          </p>
+
+          <p class="lead">
+            Start with the requirement in front of you. Where that requirement connects to software, automation or ICT, KLOUDEP can help carry the operational thread forward.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#services">Explore Business Services</a>
+            <a class="btn" href="quotation.html">Generate a Quotation</a>
+          </div>
         </div>
 
-        <h1>
-          KLOUDEP Business Services.
-          <br>
-          <span class="gradient">
-            Practical Support for Modern Organisations.
-          </span>
-        </h1>
+        <aside class="hero-panel" aria-label="Business compliance journey">
+          <div class="eyebrow">From Requirement to Routine</div>
+          <h2>Support across the operating lifecycle.</h2>
+          <p>
+            Business requirements rarely arrive in isolation. Company records, filings, employer administration, financial data and tender documentation often depend on one another.
+          </p>
 
-        <p class="lead">
-          KLOUDEP supports organisations with business administration,
-          tender and RFP preparation, CIPC administrative support,
-          business document analysis, bookkeeping data cleanup,
-          reconciliations and reporting.
-        </p>
-
-        <div class="actions">
-          <a class="btn primary" href="quotation.html">
-            Request a Quotation
-          </a>
-
-          <a class="btn secondary" href="index.html">
-            Back to KLOUDEP
-          </a>
-        </div>
+          <div class="journey">
+            <div class="journey-item">
+              <div class="journey-num">01</div>
+              <div><strong>Establish</strong><span>Company startup and core records.</span></div>
+            </div>
+            <div class="journey-item">
+              <div class="journey-num">02</div>
+              <div><strong>Maintain</strong><span>Ownership, annual and employer administration.</span></div>
+            </div>
+            <div class="journey-item">
+              <div class="journey-num">03</div>
+              <div><strong>Organise</strong><span>Business records, bookkeeping data and reporting.</span></div>
+            </div>
+            <div class="journey-item">
+              <div class="journey-num">04</div>
+              <div><strong>Respond</strong><span>Tender, RFP and document requirements.</span></div>
+            </div>
+          </div>
+        </aside>
 
       </div>
     </section>
 
+    <!-- Capability strip -->
+    <section class="cap-strip" aria-label="Business service capabilities">
+      <div class="container cap-grid">
+        <a class="capability" href="#company-compliance">Company &amp; Compliance</a>
+        <a class="capability" href="#tender-support">Tender &amp; RFP</a>
+        <a class="capability" href="#records-data">Records &amp; Data</a>
+        <a class="capability" href="#connected-operations">Connected Operations</a>
+      </div>
+    </section>
 
-    <section class="section alt">
+    <!-- =========================================================
+         SERVICES
+    ========================================================== -->
+    <section class="section alt" id="services">
       <div class="container">
 
         <div class="head">
           <div class="eyebrow">Business Services</div>
-
-          <h2>
-            Business Support Built Around Your Organisation.
-          </h2>
+          <h2>Start with the business requirement you need to solve.</h2>
+          <p>
+            Each service is presented around a defined requirement rather than a generic consulting label. Where a standard quotation service is available, you can open the quotation engine with that service already selected.
+          </p>
         </div>
 
-        <div class="grid">
-
-          <article class="card">
-            <h3>Tender &amp; RFP Support</h3>
-            <p>
-              Structured assistance with tender documentation,
-              RFP requirements, bid information and submission preparation.
-            </p>
-            <div class="tags">
-              Tenders • RFPs • Documentation • Bid Support
+        <!-- Company & Compliance -->
+        <div class="service-group" id="company-compliance">
+          <div class="group-heading">
+            <div>
+              <div class="eyebrow">01 • Company &amp; Compliance</div>
+              <h3>Keep important company administration moving.</h3>
             </div>
-          </article>
-
-          <article class="card">
-            <h3>CIPC Administrative Support</h3>
             <p>
-              Practical support with company administration,
-              business records and CIPC-related documentation.
+              Support for company startup, ownership information, annual administration, employer setup and ongoing compliance routines.
             </p>
-            <div class="tags">
-              CIPC • Company Records • Administration
-            </div>
-          </article>
+          </div>
 
-          <article class="card">
-            <h3>Business Document Analysis</h3>
+          <div class="service-grid">
+
+            <article class="service-card">
+              <div class="kicker">Company Setup</div>
+              <h3>Company Startup Pack</h3>
+              <p>
+                Company registration support, essential startup compliance setup and preparation of core company records.
+              </p>
+              <div class="note">KLOUDEP service fees and applicable official CIPC/government fees are treated separately.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=company-startup">Generate Startup Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Ownership Records</div>
+              <h3>Beneficial Ownership Filing</h3>
+              <p>
+                Preparation and submission support for CIPC Beneficial Ownership information and required ownership records.
+              </p>
+              <div class="note">Applicable official CIPC/government fees are separate from the KLOUDEP service fee.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=bo-filing">Generate BO Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Annual Administration</div>
+              <h3>Annual Return + Beneficial Ownership</h3>
+              <p>
+                Combined annual return and Beneficial Ownership filing support to help maintain current company records.
+              </p>
+              <div class="note">Applicable official CIPC/government fees are separate from the KLOUDEP service fee.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=annual-bo">Generate Annual + BO Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Employer Administration</div>
+              <h3>Employer Setup — PAYE, UIF &amp; SDL</h3>
+              <p>
+                Employer registration and administrative setup support for PAYE, UIF and SDL with the relevant authorities.
+              </p>
+              <div class="note">Designed for organisations that need to establish the administrative foundations for employing staff.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=employer-setup">Generate Employer Setup Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Tax Administration</div>
+              <h3>eFiling Setup &amp; Administrative Help</h3>
+              <p>
+                SARS eFiling profile setup, administrative assistance and guidance with accessing and managing available tax services.
+              </p>
+              <div class="note">Administrative support is scoped to the selected service and does not present KLOUDEP as SARS.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=efiling-help">Generate eFiling Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Ongoing Administration</div>
+              <h3>Compliance Retainers</h3>
+              <p>
+                Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.
+              </p>
+              <div class="note">Monthly and annual service options are available in the quotation engine.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=compliance-monthly">Generate Retainer Quotation →</a></div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Tender & RFP -->
+        <div class="service-group" id="tender-support">
+          <div class="group-heading">
+            <div>
+              <div class="eyebrow">02 • Tender &amp; RFP</div>
+              <h3>Turn submission requirements into structured working material.</h3>
+            </div>
             <p>
-              Structured review and organisation of business documents
-              to help identify requirements, risks and action points.
+              Tender support should make requirements easier to see, organise and work through — not add another layer of vague consulting language.
             </p>
-            <div class="tags">
-              Documents • Analysis • Business Support
-            </div>
-          </article>
+          </div>
 
-          <article class="card">
-            <h3>Bookkeeping Data Cleanup</h3>
+          <div class="service-grid">
+
+            <article class="service-card">
+              <div class="kicker">Tender Support</div>
+              <h3>Tender &amp; RFP Scoring Matrix</h3>
+              <p>
+                Structured assistance with tender and RFP requirements, compliance items, bid information and submission preparation.
+              </p>
+              <div class="note">Use the quotation engine to define the selected tender service and applicable scope.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=tender">Generate Tender Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Document Organisation</div>
+              <h3>Requirement &amp; Action-Point Analysis</h3>
+              <p>
+                Structured review and organisation of business documents to identify requirements, action points and information that needs attention.
+              </p>
+              <div class="note">Useful where a document set needs to be converted into a clearer operational checklist or working structure.</div>
+              <div class="card-action"><a class="btn small" href="index.html#contact">Discuss the Requirement →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Connected Workflow</div>
+              <h3>From Submission Work to Repeatable Process</h3>
+              <p>
+                Where recurring tender or document work exposes a manual workflow problem, KLOUDEP can connect the requirement to software, CRM or workflow automation services.
+              </p>
+              <div class="note">The operational need comes first; technology is introduced only where it serves that need.</div>
+              <div class="card-action"><a class="btn small" href="software-development.html">Explore Digital Systems →</a></div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Records & Data -->
+        <div class="service-group" id="records-data">
+          <div class="group-heading">
+            <div>
+              <div class="eyebrow">03 • Business Records &amp; Data</div>
+              <h3>Make business information easier to use.</h3>
+            </div>
             <p>
-              Organisation and cleanup of bookkeeping data to improve
-              the quality and usefulness of financial records.
+              Support for organising bookkeeping inputs, bank-statement data, reconciliations and reporting material into a more usable working structure.
             </p>
-            <div class="tags">
-              Bookkeeping • Data Cleanup • Records
-            </div>
-          </article>
+          </div>
 
-          <article class="card">
-            <h3>Reconciliations &amp; Reporting</h3>
-            <p>
-              Support with reconciliations and structured business
-              reporting for clearer operational information.
-            </p>
-            <div class="tags">
-              Reconciliations • Reporting • Business Data
-            </div>
-          </article>
+          <div class="service-grid">
 
+            <article class="service-card">
+              <div class="kicker">Bookkeeping Data</div>
+              <h3>Bookkeeping &amp; Bank Statement Conversion</h3>
+              <p>
+                Organisation and cleanup of bookkeeping data, including supported bank-statement conversion work, to improve the usability of financial records.
+              </p>
+              <div class="note">Quotation scope is determined through the selected bookkeeping service and required volume.</div>
+              <div class="card-action"><a class="btn small primary" href="quotation.html?service=bookkeeping">Generate Bookkeeping Quotation →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Reconciliation</div>
+              <h3>Reconciliations</h3>
+              <p>
+                Support with organising and reconciling business data so records can be reviewed against the information available.
+              </p>
+              <div class="note">Scope depends on the records supplied and the reconciliation requirement.</div>
+              <div class="card-action"><a class="btn small" href="index.html#contact">Discuss Reconciliation Support →</a></div>
+            </article>
+
+            <article class="service-card">
+              <div class="kicker">Reporting</div>
+              <h3>Structured Business Reporting</h3>
+              <p>
+                Organisation of operational business information into clearer reporting material for internal review and decision support.
+              </p>
+              <div class="note">Reporting support is based on the information and business requirement provided.</div>
+              <div class="card-action"><a class="btn small" href="index.html#contact">Discuss Reporting Support →</a></div>
+            </article>
+
+          </div>
         </div>
 
       </div>
     </section>
 
+    <!-- =========================================================
+         COMPLIANCE TO OPERATIONS STORY
+    ========================================================== -->
+    <section class="section" id="connected-operations">
+      <div class="container">
+        <div class="story-shell">
+          <div class="story-grid">
 
+            <div class="story-copy">
+              <div class="eyebrow">The KLOUDEP Connection</div>
+              <h2>Compliance is part of operations — not a separate universe.</h2>
+              <p>
+                A company filing can expose an outdated record. A tender can expose missing information. Bookkeeping cleanup can expose a manual process. Growth can create new employer, software or ICT requirements.
+              </p>
+              <p>
+                KLOUDEP's broader service model allows the business requirement to remain connected as it moves from administration into systems, workflows or technology infrastructure.
+              </p>
+              <div class="actions">
+                <a class="btn primary" href="index.html#solutions">Explore All KLOUDEP Solutions</a>
+                <a class="btn" href="quotation.html">Generate a Quotation</a>
+              </div>
+            </div>
+
+            <div class="flow" aria-label="Connected business operations">
+              <div class="flow-row">
+                <div class="flow-icon">01</div>
+                <div><strong>Business requirement</strong><span>Start with the filing, record, tender, data or operational issue that actually needs attention.</span></div>
+              </div>
+              <div class="flow-row">
+                <div class="flow-icon">02</div>
+                <div><strong>Defined service scope</strong><span>Select the relevant service and establish what is included before the work moves forward.</span></div>
+              </div>
+              <div class="flow-row">
+                <div class="flow-icon">03</div>
+                <div><strong>Operational connection</strong><span>Where the requirement reveals a recurring process or systems need, connect it to software, automation or ICT.</span></div>
+              </div>
+              <div class="flow-row">
+                <div class="flow-icon">04</div>
+                <div><strong>One KLOUDEP environment</strong><span>Keep related business and technology requirements connected without pretending every problem needs the same solution.</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FACTUAL TRUST
+    ========================================================== -->
+    <section class="section alt">
+      <div class="container">
+        <div class="trust-shell">
+          <div class="head">
+            <div class="eyebrow">Factual Trust Signals</div>
+            <h2>Clear business identity. Clear service scope.</h2>
+            <p>
+              Trust does not need inflated claims. KLOUDEP presents its business identity, service scope and quotation pathway clearly so customers can understand who they are dealing with and what they are selecting.
+            </p>
+          </div>
+
+          <div class="proof-grid">
+            <div class="proof">
+              <strong>South African Registered Company</strong>
+              <span>KLOUDEP (Pty) Ltd operates as a registered South African company.</span>
+            </div>
+            <div class="proof">
+              <strong>VAT Registered</strong>
+              <span>Business quotations and service pricing operate within KLOUDEP's registered business environment.</span>
+            </div>
+            <div class="proof">
+              <strong>Pretoria &amp; Cape Town Presence</strong>
+              <span>KLOUDEP maintains business presence in Gauteng and the Western Cape.</span>
+            </div>
+            <div class="proof">
+              <strong>Defined Quotation Flow</strong>
+              <span>Select a service, review the scope and generate a quotation through the KLOUDEP quotation workflow.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FINAL CTA
+    ========================================================== -->
     <section class="section">
       <div class="container">
-
-        <div class="head">
-          <div class="eyebrow">KLOUDEP</div>
-
-          <h2>
-            Business and Technology Support in One Organisation.
-          </h2>
-
-          <p>
-            KLOUDEP combines business services with software development,
-            CRM onboarding, workflow automation, managed IT support
-            and ICT procurement.
-          </p>
+        <div class="cta-shell">
+          <div>
+            <div class="eyebrow">Start With the Requirement</div>
+            <h2>Know what you need? Go straight to the quotation.</h2>
+            <p>
+              Choose a service above for a preselected quotation, or open the full quotation engine to compare the available KLOUDEP business and technology services.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="quotation.html">Open Quotation Engine</a>
+            <a class="btn" href="index.html#contact">Contact KLOUDEP</a>
+          </div>
         </div>
-
-        <div class="actions">
-          <a class="btn primary" href="index.html#solutions">
-            Explore All KLOUDEP Solutions
-          </a>
-
-          <a class="btn secondary" href="quotation.html">
-            Request a Quotation
-          </a>
-        </div>
-
       </div>
     </section>
 
   </main>
 
-
   <footer>
-    <div class="container">
-      <strong>KLOUDEP (Pty) Ltd</strong>
-      <p>
-        South African Business &amp; Technology Solutions
-      </p>
+    <div class="container footer-grid">
+      <div>
+        <strong>KLOUDEP (Pty) Ltd</strong>
+        <p>South African Business &amp; Technology Solutions</p>
+        <p>
+          <a href="mailto:info@kloudep.co.za">info@kloudep.co.za</a>
+          &nbsp;•&nbsp;
+          <a href="tel:+27659051136">+27 65 905 1136</a>
+        </p>
+      </div>
 
-      <p>
-        <a href="index.html">Home</a> |
-        <a href="software-development.html">Software Development</a> |
-        <a href="crm-onboarding.html">CRM</a> |
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="software-development.html">Software</a>
+        <a href="crm-onboarding.html">CRM</a>
         <a href="managed-it.html">Managed IT</a>
-      </p>
+        <a href="quotation.html">Quotation</a>
+      </nav>
     </div>
   </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu');
+    const navigation = document.getElementById('main-navigation');
+
+    if (menuButton && navigation) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = navigation.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+        menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      navigation.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navigation.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Open navigation');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>
