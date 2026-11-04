@@ -343,60 +343,61 @@
         margin: 0 !important;
         padding: 0 !important;
         background: #fff !important;
-      }
-
-      body > * {
-        display: none !important;
-      }
-
-      body > .page-shell {
-        display: block !important;
-      }
-
-      .page-shell > * {
-        display: none !important;
-      }
-
-      .page-shell > .quote-workspace {
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width: none !important;
-      }
-
-      .quote-workspace > * {
-        display: none !important;
-      }
-
-      .quote-workspace > .quote-preview-wrap {
-        display: block !important;
         width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
       }
 
-      .quote-preview-wrap > * {
+      body {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      /* Keep ancestors rendered so the quotation itself cannot disappear. */
+      .topbar,
+      .form-panel,
+      .preview-label,
+      .btn-action-group,
+      .quote-success {
         display: none !important;
       }
 
-      .quote-preview-wrap > .quote-sheet {
+      .page-shell,
+      .quote-workspace,
+      .quote-preview-wrap {
         display: block !important;
-      }
-
-      .quote-sheet {
-        position: static !important;
         width: 100% !important;
         max-width: none !important;
         min-height: 0 !important;
         height: auto !important;
         margin: 0 !important;
-        padding: 10mm !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: visible !important;
+      }
+
+      .quote-sheet {
+        display: block !important;
+        position: static !important;
+        visibility: visible !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 0 !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 8mm !important;
         box-sizing: border-box !important;
+        background: #fff !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         overflow: visible !important;
         page-break-after: avoid !important;
         break-after: avoid-page !important;
+      }
+
+      .quote-sheet,
+      .quote-sheet * {
+        visibility: visible !important;
       }
 
       .sheet-header,
