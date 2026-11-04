@@ -557,7 +557,12 @@
                 Ongoing business compliance administration, filing reminders, record maintenance and routine compliance support.
               </p>
               <div class="note">Monthly and annual service options are available in the quotation engine.</div>
-              <div class="card-action"><a class="btn small primary" href="quotation.html?service=compliance-monthly">Generate Retainer Quotation →</a></div>
+              <div class="card-action">
+                <div class="actions" style="margin-top:0">
+                  <a class="btn small primary" href="quotation.html?service=compliance-monthly">Monthly Retainer →</a>
+                  <a class="btn small" href="quotation.html?service=compliance-annual">Annual Retainer →</a>
+                </div>
+              </div>
             </article>
 
           </div>
@@ -728,7 +733,7 @@
             </div>
             <div class="proof">
               <strong>VAT Registered</strong>
-              <span>Business quotations and service pricing operate within KLOUDEP's registered business environment.</span>
+              <span>KLOUDEP operates as a VAT-registered South African business.</span>
             </div>
             <div class="proof">
               <strong>Pretoria &amp; Cape Town Presence</strong>
@@ -807,6 +812,16 @@
           menuButton.setAttribute('aria-label', 'Open navigation');
           document.body.style.overflow = '';
         });
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && navigation.classList.contains('open')) {
+          navigation.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Open navigation');
+          document.body.style.overflow = '';
+          menuButton.focus();
+        }
       });
     }
   </script>
