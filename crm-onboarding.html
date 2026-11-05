@@ -26,6 +26,7 @@
 
   <style>
     /* Page-specific additions. Core KLOUDEP styling remains in css/style.css. */
+    .crm-page .brand img{width:58px;height:58px;object-fit:contain;flex:0 0 auto}
     .crm-page .head{max-width:840px;margin-bottom:34px}
     .crm-page .head h2{margin-top:8px}
     .crm-page .section-anchor{scroll-margin-top:110px}
@@ -54,6 +55,7 @@
       .crm-page .journey{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
     @media (max-width:760px){
+      .crm-page .brand img{width:52px;height:52px}
       .crm-page .grid4,.crm-page .problem-grid,.crm-page .proof-grid,.crm-page .journey,.crm-page .split,.crm-page .footer-grid{grid-template-columns:1fr}
       .crm-page .footer-links{justify-content:flex-start}
       .crm-page .actions{align-items:stretch}
@@ -93,8 +95,6 @@
       <nav class="links" id="main-navigation" aria-label="Main navigation">
         <a href="index.html#about">About</a>
         <a href="index.html#solutions">Services</a>
-        <a href="software-development.html">Software</a>
-        <a href="crm-onboarding.html" class="nav-current" aria-current="page">CRM</a>
         <a href="business-services.html">Business Compliance</a>
         <a href="managed-it.html">ICT Solutions</a>
         <a href="index.html#contact">Contact</a>
@@ -402,8 +402,8 @@
 
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="index.html">Home</a>
-        <a href="software-development.html">Software</a>
-        <a href="crm-onboarding.html" aria-current="page">CRM</a>
+        <a href="software-development.html">Software Development</a>
+        <a href="crm-onboarding.html" aria-current="page">CRM &amp; Business Automation</a>
         <a href="managed-it.html">ICT Solutions</a>
         <a href="business-services.html">Business Compliance</a>
         <a href="quotation.html">Quotation</a>
@@ -416,7 +416,6 @@
       const menuButton = document.querySelector('.menu');
       const navigation = document.getElementById('main-navigation');
       if (!menuButton || !navigation) return;
-
       let lastFocusedElement = null;
 
       const closeMenu = (restoreFocus = false) => {
@@ -436,9 +435,7 @@
         document.body.style.overflow = isOpening ? 'hidden' : '';
       });
 
-      navigation.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => closeMenu(false));
-      });
+      navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu(false)));
 
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && navigation.classList.contains('open')) closeMenu(true);
