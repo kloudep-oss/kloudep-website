@@ -102,7 +102,7 @@
       font-weight:800;
       letter-spacing:.08em;
     }
-    .brand img{width:48px;height:48px;object-fit:contain}
+    .brand img{width:58px;height:58px;object-fit:contain;flex:0 0 auto}
     .nav-links{
       display:flex;
       align-items:center;
@@ -348,7 +348,7 @@
       }
       .nav-links.open{display:flex}
       .nav-links a{padding:12px}
-      .brand img{width:44px;height:44px}
+      .brand img{width:52px;height:52px}
       .hero{padding:72px 0 56px}
       .hero-grid,.story-grid,.cta-shell,.footer-grid{grid-template-columns:1fr}
       .service-grid{grid-template-columns:repeat(2,1fr)}
@@ -785,45 +785,49 @@
 
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="index.html">Home</a>
-        <a href="software-development.html">Software</a>
-        <a href="crm-onboarding.html">CRM</a>
-        <a href="managed-it.html">Managed IT</a>
+        <a href="software-development.html">Software Development</a>
+        <a href="crm-onboarding.html">CRM &amp; Business Automation</a>
+        <a href="managed-it.html">ICT Solutions</a>
+        <a href="business-services.html" aria-current="page">Business Compliance</a>
         <a href="quotation.html">Quotation</a>
       </nav>
     </div>
   </footer>
 
   <script>
-    const menuButton = document.querySelector('.menu');
-    const navigation = document.getElementById('main-navigation');
+    (() => {
+      const menuButton = document.querySelector('.menu');
+      const navigation = document.getElementById('main-navigation');
+      if (!menuButton || !navigation) return;
+      let lastFocusedElement = null;
 
-    if (menuButton && navigation) {
+      const closeMenu = (restoreFocus = false) => {
+        navigation.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+        document.body.style.overflow = '';
+        if (restoreFocus && lastFocusedElement) lastFocusedElement.focus();
+      };
+
       menuButton.addEventListener('click', () => {
-        const isOpen = navigation.classList.toggle('open');
-        menuButton.setAttribute('aria-expanded', String(isOpen));
-        menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-        document.body.style.overflow = isOpen ? 'hidden' : '';
+        const isOpening = !navigation.classList.contains('open');
+        if (isOpening) lastFocusedElement = document.activeElement;
+        navigation.classList.toggle('open', isOpening);
+        menuButton.setAttribute('aria-expanded', String(isOpening));
+        menuButton.setAttribute('aria-label', isOpening ? 'Close navigation' : 'Open navigation');
+        document.body.style.overflow = isOpening ? 'hidden' : '';
       });
 
-      navigation.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navigation.classList.remove('open');
-          menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.setAttribute('aria-label', 'Open navigation');
-          document.body.style.overflow = '';
-        });
-      });
+      navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu(false)));
 
       document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && navigation.classList.contains('open')) {
-          navigation.classList.remove('open');
-          menuButton.setAttribute('aria-expanded', 'false');
-          menuButton.setAttribute('aria-label', 'Open navigation');
-          document.body.style.overflow = '';
-          menuButton.focus();
-        }
+        if (event.key === 'Escape' && navigation.classList.contains('open')) closeMenu(true);
       });
-    }
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900 && navigation.classList.contains('open')) closeMenu(false);
+      });
+    })();
   </script>
 
 </body>
