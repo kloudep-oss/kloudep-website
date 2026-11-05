@@ -74,7 +74,7 @@
 <style>
 :root{--bg:#050914;--surface:rgba(15,23,42,.66);--text:#f8fafc;--muted:#a8b3c7;--line:rgba(255,255,255,.10);--cyan:#22d3ee;--blue:#3b82f6;--violet:#8b5cf6;--radius:26px;--shadow:0 24px 80px rgba(0,0,0,.34);--max:1180px;--ease:cubic-bezier(.2,.8,.2,1)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(900px 520px at 12% -5%,rgba(34,211,238,.12),transparent 62%),radial-gradient(850px 520px at 90% 4%,rgba(139,92,246,.12),transparent 60%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.container{width:min(var(--max),calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;z-index:1000;background:rgba(5,9,20,.72);border-bottom:1px solid var(--line);backdrop-filter:blur(20px)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.06em}.brand img{width:42px;height:42px;object-fit:contain}.brand span{display:flex;flex-direction:column;line-height:1.05}.brand small{margin-top:6px;color:var(--muted);font-size:9px;letter-spacing:.15em}.links{display:flex;align-items:center;gap:25px}.links>a:not(.btn){font-size:14px;color:#d7deea;transition:.25s}.links>a:not(.btn):hover{color:#fff;transform:translateY(-1px)}.menu{display:none;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;border-radius:14px;padding:10px 14px;font-weight:700}
+header{position:sticky;top:0;z-index:1000;background:rgba(5,9,20,.72);border-bottom:1px solid var(--line);backdrop-filter:blur(20px)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.06em}.brand img{width:58px;height:58px;object-fit:contain;flex:0 0 auto}.brand span{display:flex;flex-direction:column;line-height:1.05}.brand small{margin-top:6px;color:var(--muted);font-size:9px;letter-spacing:.15em}.links{display:flex;align-items:center;gap:25px}.links>a:not(.btn){font-size:14px;color:#d7deea;transition:.25s}.links>a:not(.btn):hover{color:#fff;transform:translateY(-1px)}.menu{display:none;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;border-radius:14px;padding:10px 14px;font-weight:700}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.055);color:#fff;font-weight:750;font-size:14px;transition:.25s var(--ease)}.btn:hover{transform:translateY(-3px);background:rgba(255,255,255,.09)}.btn.primary{border:0;background:linear-gradient(135deg,var(--cyan),var(--blue) 55%,var(--violet));box-shadow:0 10px 35px rgba(59,130,246,.25)}
 .hero{position:relative;overflow:hidden;padding:118px 0 88px}.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:72px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#8eeaff;font-size:12px;font-weight:850;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--violet))}.hero h1{font-size:clamp(54px,7.3vw,92px);line-height:.96;letter-spacing:-.065em;margin:22px 0 28px}.gradient{background:linear-gradient(100deg,#fff 4%,#67e8f9 42%,#a78bfa 88%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:760px;color:var(--muted);font-size:clamp(17px,1.6vw,20px);line-height:1.75}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .panel,.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));box-shadow:var(--shadow);backdrop-filter:blur(16px)}.panel{padding:30px;border-radius:var(--radius)}.panel h3{font-size:25px;margin:13px 0 20px}.quick{display:grid;gap:10px}.quick a{padding:15px 16px;border:1px solid var(--line);border-radius:15px;color:#e5edf8;background:rgba(255,255,255,.025);transition:.25s var(--ease)}.quick a:hover{transform:translateX(5px);background:rgba(255,255,255,.07)}
@@ -256,7 +256,7 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
       <div class="container trust-grid">
         <a class="capability" href="software-development.html"><span class="capability-icon">⌘</span><span>Software &amp; CRM</span></a>
         <a class="capability" href="managed-it.html"><span class="capability-icon">◇</span><span>Servers &amp; Networks</span></a>
-        <a class="capability" href="business-services.html"><span class="capability-icon">✓</span><span>Business Services</span></a>
+        <a class="capability" href="business-services.html"><span class="capability-icon">✓</span><span>Business Compliance</span></a>
         <a class="capability" href="quotation.html?service=hardware"><span class="capability-icon">↗</span><span>ICT Procurement</span></a>
       </div>
     </section>
@@ -275,7 +275,7 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
           <a class="need-card" href="managed-it.html"><span class="need-icon">◇</span><strong>Improve IT</strong><span>Managed IT, servers, networks and ICT procurement support.</span><b>Explore ICT →</b></a>
           <a class="need-card" href="business-services.html"><span class="need-icon">≋</span><strong>Organise finances</strong><span>Bookkeeping data cleanup, reconciliations and reporting support.</span><b>Explore business services →</b></a>
         </div>
-        <div class="trust-proof"><span class="proof">South African registered company</span><span class="proof">VAT registered</span><span class="proof">Secure digital workflows</span><span class="proof">Pretoria &amp; Cape Town presence</span></div>
+        <div class="trust-proof"><span class="proof">South African registered company</span><span class="proof">VAT registered</span><span class="proof">Structured digital workflows</span><span class="proof">Pretoria &amp; Cape Town presence</span></div>
       </div></div>
     </section>
 
@@ -312,11 +312,11 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
 
           <article class="card">
 
-            <h3>Practical</h3>
+            <h3>Start With the Requirement</h3>
 
             <p>
-              Solutions focused on useful business outcomes rather
-              than unnecessary complexity.
+              Understand the operational problem first, then determine
+              the technology, service or workflow that should support it.
             </p>
 
           </article>
@@ -324,11 +324,11 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
 
           <article class="card">
 
-            <h3>Flexible</h3>
+            <h3>Connected Capability</h3>
 
             <p>
-              Support for focused projects, onboarding, upgrades,
-              troubleshooting and ongoing requirements.
+              Software, CRM, ICT infrastructure and business requirements
+              can be considered together when the work crosses disciplines.
             </p>
 
           </article>
@@ -336,11 +336,11 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
 
           <article class="card">
 
-            <h3>Business-minded</h3>
+            <h3>Defined or Scoped</h3>
 
             <p>
-              Technology decisions considered alongside workflows,
-              reporting and day-to-day operations.
+              Use direct quotation for defined catalogue services and
+              discovery for requirements that need proper scoping first.
             </p>
 
           </article>
@@ -418,12 +418,12 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
               </h3>
 
               <p>
-                CRM selection support, setup, onboarding, data migration,
-                pipelines, workflows, dashboards and training.
+                Structure customer information, pipelines, follow-ups and workflows
+                around the way your organisation works.
               </p>
 
               <div class="tags">
-                CRM • Migration • Workflows • Training
+                CRM • Pipelines • Workflows • Automation
               </div>
 
             </article>
@@ -715,11 +715,39 @@ header .links .btn.primary{min-height:46px;padding-inline:22px}
        JAVASCRIPT
   ========================================================== -->
   <script>
-  (()=>{const m=document.querySelector('.menu'),n=document.querySelector('#main-navigation');
-  if(m&&n){m.innerHTML='Menu <span aria-hidden="true">☰</span>';const c=()=>{n.classList.remove('open');m.setAttribute('aria-expanded','false');document.body.style.overflow=''};
-  m.addEventListener('click',()=>{const o=!n.classList.contains('open');n.classList.toggle('open',o);m.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':''});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',c));}
-  const els=document.querySelectorAll('.section .head,.section .card,.need-shell,.hero .panel,.contact');els.forEach(e=>e.classList.add('reveal'));
-  if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.12});els.forEach(e=>io.observe(e))}else els.forEach(e=>e.classList.add('visible'));})();
+    (() => {
+      const menuButton = document.querySelector('.menu');
+      const navigation = document.getElementById('main-navigation');
+      if (!menuButton || !navigation) return;
+      let lastFocusedElement = null;
+
+      const closeMenu = (restoreFocus = false) => {
+        navigation.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+        document.body.style.overflow = '';
+        if (restoreFocus && lastFocusedElement) lastFocusedElement.focus();
+      };
+
+      menuButton.addEventListener('click', () => {
+        const isOpening = !navigation.classList.contains('open');
+        if (isOpening) lastFocusedElement = document.activeElement;
+        navigation.classList.toggle('open', isOpening);
+        menuButton.setAttribute('aria-expanded', String(isOpening));
+        menuButton.setAttribute('aria-label', isOpening ? 'Close navigation' : 'Open navigation');
+        document.body.style.overflow = isOpening ? 'hidden' : '';
+      });
+
+      navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu(false)));
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && navigation.classList.contains('open')) closeMenu(true);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900 && navigation.classList.contains('open')) closeMenu(false);
+      });
+    })();
   </script>
 
 </body>
