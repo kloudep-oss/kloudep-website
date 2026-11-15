@@ -89,11 +89,13 @@
       text-decoration: none;
     }
     .logo-box img {
-      height: 66px;
-      width: auto;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3px;
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      border-radius: 0;
+      background: transparent;
+      padding: 0;
+      filter: drop-shadow(0 8px 18px rgba(124, 58, 237, .22));
     }
     .logo-txt {
       font-size: 1.4rem;
@@ -255,9 +257,10 @@
       gap: 12px;
     }
     .sheet-logo-area img {
-      height: 52px;
-      width: auto;
+      width: 54px;
+      height: 54px;
       object-fit: contain;
+      background: transparent;
     }
     .sheet-comp-info {
       text-align: right;
@@ -645,7 +648,7 @@
     }
     header{padding:0;background:rgba(5,9,20,.74);border-bottom:1px solid var(--premium-line)}
     .nav-wrap{min-height:82px}
-    .logo-box img{height:46px;background:transparent;padding:0}
+    .logo-box img{width:46px;height:46px;background:transparent;padding:0}
     .logo-txt{font-size:1.08rem;letter-spacing:.05em}
     .logo-txt span{margin-top:5px;font-size:.56rem;color:var(--premium-muted);letter-spacing:.14em}
     .back-btn{padding:10px 14px;border:1px solid var(--premium-line);border-radius:999px;background:rgba(255,255,255,.035);transition:.25s var(--premium-ease)}
@@ -713,7 +716,7 @@
     @media(max-width:700px){
       .container{padding:0 15px}
       .nav-wrap{min-height:72px}
-      .logo-box img{height:40px}
+      .logo-box img{width:40px;height:40px}
       .logo-txt span{display:none}
       .back-btn{font-size:.78rem;padding:9px 11px}
       .back-btn i{display:none}
@@ -774,7 +777,7 @@
   <header>
     <div class="container nav-wrap">
       <a href="index.html" class="logo-box">
-        <img src="images/logo.png" alt="KLOUDEP Logo" onerror="this.onerror=null; this.src='logo.png'; this.addEventListener('error', () => this.style.display='none');" />
+        <img src="images/kloudep-brand-web.png" alt="KLOUDEP Logo" />
         <div class="logo-txt">
           KLOUDEP
           <span>Official Quotation Engine</span>
@@ -892,7 +895,7 @@
           <!-- Sheet Header with Company Logo -->
           <div class="sheet-header">
             <div class="sheet-logo-area">
-              <img src="images/logo.png" alt="KLOUDEP Logo" onerror="this.onerror=null; this.src='logo.png'; this.addEventListener('error', () => this.style.display='none');" />
+              <img src="images/kloudep-brand-web.png" alt="KLOUDEP Logo" />
               <div>
                 <strong style="font-size: 1.25rem; color: #0f172a; font-family:'Space Grotesk', sans-serif;">KLOUDEP (PTY) LTD</strong>
                 <div style="font-size: 0.78rem; color: #64748b;">Enterprise Intelligence & ICT Solutions</div>

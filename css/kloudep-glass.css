@@ -1,0 +1,225 @@
+/* KLOUDEP Glass — staging design system. Loaded after page-local CSS. */
+:root{
+  --kg-bg:#050914;--kg-glass:rgba(10,18,35,.48);--kg-glass-strong:rgba(12,20,38,.68);
+  --kg-line:rgba(255,255,255,.13);--kg-highlight:rgba(255,255,255,.22);
+  --kg-cyan:#22d3ee;--kg-blue:#3b82f6;--kg-violet:#8b5cf6;
+  --kg-shadow:0 28px 90px rgba(0,0,0,.34);--kg-ease:cubic-bezier(.2,.8,.2,1)
+}
+html{background:var(--kg-bg)}
+/* Unified KLOUDEP typography — homepage sans-serif system across all primary pages. */
+body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+h1,h2{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;font-style:normal;font-weight:800}
+body{position:relative;isolation:isolate;background:
+ radial-gradient(900px 620px at 5% 4%,rgba(34,211,238,.12),transparent 64%),
+ radial-gradient(900px 620px at 96% 8%,rgba(139,92,246,.14),transparent 62%),
+ radial-gradient(760px 520px at 52% 68%,rgba(59,130,246,.07),transparent 68%),var(--kg-bg)!important}
+body::before{content:"";position:fixed;z-index:-2;inset:0;background:url('../images/kloudep-transparent.svg') no-repeat 86% 14%/min(68vw,900px) auto;opacity:.055;filter:saturate(.85);pointer-events:none}
+body::after{content:"";position:fixed;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(5,9,20,.02),rgba(5,9,20,.22));pointer-events:none}
+header,.site-header{position:sticky!important;top:12px!important;z-index:1000!important;width:min(1220px,calc(100% - 28px))!important;margin:12px auto 0!important;border:1px solid var(--kg-line)!important;border-radius:22px!important;background:linear-gradient(145deg,rgba(13,22,40,.66),rgba(7,13,27,.46))!important;box-shadow:0 14px 44px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.08)!important;backdrop-filter:blur(26px) saturate(145%)!important;-webkit-backdrop-filter:blur(26px) saturate(145%)!important;overflow:visible}
+header .nav,.site-header .nav{min-height:76px!important;padding-inline:16px!important}
+.brand img{display:block!important;width:50px!important;height:50px!important;object-fit:contain!important;object-position:center!important}
+.links,.nav-links{transition:transform .35s var(--kg-ease),opacity .35s var(--kg-ease)!important}
+.links>a:not(.btn),.nav-links a:not(.nav-cta){transition:color .25s var(--kg-ease),background .25s var(--kg-ease),transform .25s var(--kg-ease)!important}
+.links>a:not(.btn):hover,.nav-links a:not(.nav-cta):hover{transform:translateY(-1px)!important;color:#fff!important;background:rgba(255,255,255,.045)!important}
+.btn,.nav-cta,.button,.cta{transition:transform .28s var(--kg-ease),background .28s var(--kg-ease),border-color .28s var(--kg-ease),box-shadow .28s var(--kg-ease)!important}
+.btn:hover,.nav-cta:hover,.button:hover,.cta:hover{transform:translateY(-2px)!important}
+.btn.primary,.nav-cta{box-shadow:0 10px 34px rgba(59,130,246,.18),inset 0 1px 0 rgba(255,255,255,.18)!important}
+.panel,.card,.need-shell,.need-card,.contact,.service-card,.feature-card,.process-card,.cta-panel,.hero-card,.info-card,.solution-card,.step,.service-item{border-color:var(--kg-line)!important;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))!important;box-shadow:var(--kg-shadow),inset 0 1px 0 rgba(255,255,255,.055)!important;backdrop-filter:blur(22px) saturate(125%)!important;-webkit-backdrop-filter:blur(22px) saturate(125%)!important}
+.card:hover,.need-card:hover,.service-card:hover,.feature-card:hover,.solution-card:hover{transform:translateY(-4px)!important;border-color:rgba(103,232,249,.25)!important;background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.04))!important;box-shadow:0 32px 95px rgba(0,0,0,.38),0 0 50px rgba(34,211,238,.035),inset 0 1px 0 rgba(255,255,255,.09)!important}
+.section.alt,.band,.trust{background:rgba(255,255,255,.012)!important;backdrop-filter:blur(4px)}
+footer{background:linear-gradient(180deg,rgba(3,7,17,.72),rgba(3,7,17,.94))!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+::selection{background:rgba(34,211,238,.28);color:#fff}
+@media(max-width:900px){header,.site-header{top:8px!important;width:calc(100% - 16px)!important;margin-top:8px!important;border-radius:18px!important}.brand img{width:46px!important;height:46px!important}.links,.nav-links{background:rgba(5,9,20,.94)!important;backdrop-filter:blur(28px) saturate(140%)!important;-webkit-backdrop-filter:blur(28px) saturate(140%)!important}body::before{background-position:90% 10%;background-size:110vw auto;opacity:.045}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* =========================================================
+   KLOUDEP TYPOGRAPHY NORMALIZATION
+   Shared rhythm only: responsive sizes and page layouts stay local.
+   ========================================================= */
+:root{
+  --kl-type-sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --kl-weight-regular:400;
+  --kl-weight-medium:600;
+  --kl-weight-semibold:700;
+  --kl-weight-bold:800;
+  --kl-track-hero:-.055em;
+  --kl-track-section:-.045em;
+  --kl-track-label:.16em;
+  --kl-leading-hero:.98;
+  --kl-leading-section:1.06;
+  --kl-leading-card:1.25;
+  --kl-leading-body:1.7;
+}
+
+body{
+  font-family:var(--kl-type-sans)!important;
+  font-weight:var(--kl-weight-regular);
+  line-height:var(--kl-leading-body);
+  letter-spacing:normal;
+}
+
+/* Hero typography: preserve each page's responsive font-size. */
+.hero h1,
+body > main h1,
+main .hero h1{
+  font-family:var(--kl-type-sans)!important;
+  font-weight:var(--kl-weight-bold)!important;
+  line-height:var(--kl-leading-hero)!important;
+  letter-spacing:var(--kl-track-hero)!important;
+}
+
+/* Section typography: spacing is deliberately limited to h2 itself. */
+.head h2,
+.contact h2,
+.need-shell h2,
+.story-shell h2,
+.trust-shell h2,
+.cta-shell h2,
+section h2{
+  font-family:var(--kl-type-sans)!important;
+  font-weight:var(--kl-weight-bold)!important;
+  line-height:var(--kl-leading-section)!important;
+  letter-spacing:var(--kl-track-section)!important;
+}
+
+/* Card/subsection headings keep their local size but share rhythm. */
+.card h3,
+.panel h3,
+.service-card h3,
+.group-heading h3,
+.need-card h3,
+.problem h3,
+section h3{
+  font-family:var(--kl-type-sans);
+  font-weight:var(--kl-weight-semibold);
+  line-height:var(--kl-leading-card);
+  letter-spacing:-.015em;
+}
+
+/* Brand and navigational controls use one consistent emphasis. */
+.links>a:not(.btn),
+.nav-links a,
+.btn,
+.menu,
+.text-link{
+  font-family:var(--kl-type-sans);
+  font-weight:var(--kl-weight-semibold);
+  letter-spacing:0;
+}
+
+/* Small uppercase labels retain brand character consistently. */
+.eyebrow,
+.service-card .kicker{
+  font-family:var(--kl-type-sans);
+  font-weight:var(--kl-weight-bold)!important;
+  line-height:1.35;
+  letter-spacing:var(--kl-track-label)!important;
+}
+
+/* Reading text: normalize rhythm without changing responsive sizes/widths. */
+p,
+.lead,
+.head p,
+.card p,
+.service-card p,
+.story-copy p,
+.cta-shell p,
+.problem p{
+  font-family:var(--kl-type-sans);
+  font-weight:var(--kl-weight-regular);
+  line-height:var(--kl-leading-body);
+}
+
+/* Consistent heading-to-copy spacing; no section/grid geometry changes. */
+.head h2{margin-bottom:18px;}
+.card h3,.service-card h3{margin-bottom:12px;}
+.group-heading h3{margin-bottom:8px;}
+.cta-shell h2{margin-bottom:12px;}
+
+/* =========================================================
+   KLOUDEP GLASS v4 — adaptive glass, app-like navigation
+   ========================================================= */
+:root{color-scheme:dark;--kg-page:#050914;--kg-text:#f7f9fc;--kg-muted:#a8b3c7;--kg-sheet:rgba(8,15,29,.68);--kg-card-a:rgba(255,255,255,.09);--kg-card-b:rgba(255,255,255,.025);--kg-footer:rgba(3,7,17,.88)}
+html[data-theme="light"]{color-scheme:light;--bg:#f3f6fb;--text:#142033;--muted:#5f6f84;--line:rgba(23,42,69,.13);--kg-bg:#f3f6fb;--kg-page:#f3f6fb;--kg-text:#142033;--kg-muted:#5f6f84;--kg-line:rgba(23,42,69,.13);--kg-highlight:rgba(255,255,255,.9);--kg-sheet:rgba(249,251,255,.72);--kg-card-a:rgba(255,255,255,.78);--kg-card-b:rgba(255,255,255,.48);--kg-footer:rgba(235,241,249,.88);--kg-shadow:0 26px 80px rgba(52,72,102,.14)}
+body{color:var(--kg-text)!important;background:radial-gradient(850px 600px at 5% 4%,rgba(34,211,238,.13),transparent 64%),radial-gradient(900px 650px at 96% 8%,rgba(139,92,246,.15),transparent 62%),radial-gradient(800px 540px at 52% 68%,rgba(59,130,246,.08),transparent 68%),var(--kg-page)!important}
+html[data-theme="light"] body::before{opacity:.075;filter:saturate(.8) contrast(.8)}
+html[data-theme="light"] body::after{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(226,234,246,.18))}
+header,.site-header{background:linear-gradient(145deg,var(--kg-card-a),var(--kg-card-b))!important;border-color:var(--kg-line)!important;box-shadow:0 16px 55px rgba(0,0,0,.14),inset 0 1px 0 var(--kg-highlight)!important}
+.panel,.card,.need-shell,.need-card,.contact,.service-card,.feature-card,.process-card,.cta-panel,.hero-card,.info-card,.solution-card,.step,.service-item,.story-shell,.trust-shell,.cta-shell{background:linear-gradient(145deg,var(--kg-card-a),var(--kg-card-b))!important;border-color:var(--kg-line)!important;color:var(--kg-text)!important}
+html[data-theme="light"] .section.alt,html[data-theme="light"] .band,html[data-theme="light"] .trust,html[data-theme="light"] .cap-strip{background:rgba(255,255,255,.28)!important}
+html[data-theme="light"] p,html[data-theme="light"] .lead,html[data-theme="light"] .head p,html[data-theme="light"] .card p,html[data-theme="light"] .story-copy p,html[data-theme="light"] .need-card span,html[data-theme="light"] .stack-item span,html[data-theme="light"] .flow-row span,html[data-theme="light"] .note,html[data-theme="light"] footer p{color:var(--kg-muted)!important}
+html[data-theme="light"] .links>a:not(.btn),html[data-theme="light"] .nav-links a:not(.nav-cta),html[data-theme="light"] .quick a,html[data-theme="light"] footer a,html[data-theme="light"] .capability{color:#41516a!important}
+html[data-theme="light"] .links>a:not(.btn):hover,html[data-theme="light"] .nav-links a:not(.nav-cta):hover{color:#101b2d!important;background:rgba(30,64,175,.055)!important}
+html[data-theme="light"] .gradient{background:linear-gradient(100deg,#142033 4%,#0891b2 42%,#6d28d9 88%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme="light"] .btn:not(.primary):not(.nav-cta){color:#18263b!important;background:rgba(255,255,255,.55)!important}
+html[data-theme="light"] .stack-item,html[data-theme="light"] .flow-row,html[data-theme="light"] .quick a{background:rgba(255,255,255,.42)!important}
+footer{background:var(--kg-footer)!important;border-color:var(--kg-line)!important}
+
+/* Theme control */
+.kg-theme-toggle{display:inline-grid;place-items:center;flex:0 0 auto;width:42px;height:42px;padding:0;border:1px solid var(--kg-line);border-radius:14px;background:linear-gradient(145deg,var(--kg-card-a),var(--kg-card-b));color:var(--kg-text);box-shadow:inset 0 1px 0 var(--kg-highlight);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);cursor:pointer;font:700 18px/1 var(--kl-type-sans);transition:transform .25s var(--kg-ease),background .25s var(--kg-ease)}
+.kg-theme-toggle:hover{transform:translateY(-1px)}
+.kg-theme-toggle:focus-visible,.menu:focus-visible{outline:3px solid rgba(34,211,238,.32);outline-offset:3px}
+
+/* Better spatial rhythm */
+.section{padding-block:88px!important}.need-section{padding:24px 0 88px!important}.hero{padding-top:96px!important;padding-bottom:72px!important}.head{margin-bottom:34px!important}footer{padding-top:54px!important}
+
+/* App-like surfaces */
+.need-shell{position:relative;overflow:hidden}.need-shell::after{content:"";position:absolute;inset:auto -8% -45% 35%;height:330px;background:radial-gradient(circle,rgba(34,211,238,.13),transparent 68%);pointer-events:none}.need-card{position:relative;z-index:1}.need-card b{display:inline-flex;align-items:center;gap:6px}.need-card b::after{content:"›";font-size:18px;line-height:1}
+
+@media(max-width:900px){
+  header .nav,.site-header .nav{min-height:64px!important;padding-inline:10px!important;gap:8px!important}
+  .brand img{width:42px!important;height:42px!important}.brand span{font-size:14px!important}.brand small{display:none!important}
+  .kg-theme-toggle{width:40px;height:40px;border-radius:13px;margin-left:auto}
+  .menu{display:inline-grid!important;place-items:center;width:auto!important;min-width:44px;height:40px!important;padding:0 12px!important;border-radius:13px!important;font-size:13px!important;color:var(--kg-text)!important;background:linear-gradient(145deg,var(--kg-card-a),var(--kg-card-b))!important}
+  .links,.nav-links{position:fixed!important;inset:74px 10px auto 10px!important;max-height:calc(100dvh - 92px);overflow:auto;display:grid!important;grid-template-columns:1fr!important;align-items:stretch!important;gap:4px!important;padding:12px!important;border:1px solid var(--kg-line)!important;border-radius:22px!important;background:var(--kg-sheet)!important;box-shadow:0 28px 80px rgba(0,0,0,.28),inset 0 1px 0 var(--kg-highlight)!important;backdrop-filter:blur(32px) saturate(150%)!important;-webkit-backdrop-filter:blur(32px) saturate(150%)!important;transform:translateY(-12px) scale(.985)!important;transform-origin:top right;opacity:0!important;visibility:hidden;pointer-events:none!important;transition:opacity .22s ease,transform .22s var(--kg-ease),visibility .22s!important}
+  .links.open,.nav-links.open{transform:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+  .links>a,.nav-links>a{display:flex!important;align-items:center!important;min-height:44px!important;padding:10px 12px!important;margin:0!important;border-radius:13px!important;font-size:15px!important;color:var(--kg-text)!important}
+  .links>a:not(.btn):hover,.nav-links>a:not(.nav-cta):hover{transform:none!important;background:rgba(127,127,127,.08)!important}
+  .links .btn,.nav-links .nav-cta{justify-content:center!important;margin-top:4px!important}
+  .hero{padding:68px 0 50px!important}.hero-grid{gap:28px!important}.section{padding-block:62px!important}.need-section{padding:16px 0 62px!important}.head{margin-bottom:26px!important}
+  .panel,.story-shell,.trust-shell,.cta-shell,.contact,.need-shell{border-radius:24px!important}
+  footer{padding-top:44px!important}
+}
+@media(max-width:620px){
+  .container{width:min(100% - 24px,var(--max))!important}.hero h1{font-size:clamp(42px,13.5vw,62px)!important}.hero{padding-top:58px!important;padding-bottom:44px!important}.section{padding-block:52px!important}.need-section{padding-bottom:52px!important}.need-shell,.contact,.story-shell,.trust-shell,.cta-shell{padding:22px!important}.card,.service-card{padding:21px!important}.need-card{min-height:150px!important;padding:19px!important}.need-icon{margin-bottom:12px!important}.trust-proof{margin-top:24px!important}.footer{gap:28px!important}.actions{margin-top:26px!important}
+}
+
+/* v4.1 flow fix: content must never disappear when reveal JS is absent. */
+.reveal{opacity:1!important;transform:none!important;}
+/* Keep premium breathing room without creating empty-scroll zones. */
+.section{padding-block:68px!important;}
+.need-section{padding:22px 0 68px!important;}
+@media(max-width:900px){.section{padding-block:54px!important}.need-section{padding:16px 0 54px!important}}
+@media(max-width:650px){.section{padding-block:44px!important}.need-section{padding:12px 0 44px!important}}
+
+/* v4.2 responsive business lifecycle */
+.journey{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+.journey-item{min-width:0;padding:20px;border:1px solid var(--kg-line);border-radius:20px;background:linear-gradient(145deg,var(--kg-card-a),var(--kg-card-b));box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.journey-item>div:last-child{display:grid;gap:7px}.journey-item strong{font-size:1.02rem}.journey-item span{color:var(--kg-muted);line-height:1.55}
+@media(max-width:900px){.journey{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){.journey{grid-template-columns:1fr!important}.journey-item{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}.journey-num{margin:0!important}}
+
+/* v4.2 contact context */
+.contact-context{display:none;margin:18px 0 0;padding:13px 16px;border:1px solid var(--kg-line);border-radius:14px;background:rgba(103,232,249,.06);color:var(--kg-text)}
+.contact-context.is-visible{display:block}
+
+
+/* v4.4 — corrected premium header brand treatment */
+.brand{gap:13px!important}
+.brand .brand-mark{
+  width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;
+  overflow:visible;border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+}
+.brand .brand-mark img{
+  width:52px!important;height:52px!important;max-width:52px!important;
+  object-fit:contain!important;transform:none!important;
+  filter:drop-shadow(0 5px 12px rgba(92,74,255,.28));
+}
+.brand>span{line-height:1.05!important}
+@media(max-width:900px){
+  .brand .brand-mark,.brand .brand-mark img{width:46px!important;height:46px!important;max-width:46px!important;flex-basis:46px}
+}
+@media(max-width:650px){
+  .brand .brand-mark,.brand .brand-mark img{width:42px!important;height:42px!important;max-width:42px!important;flex-basis:42px}
+}
